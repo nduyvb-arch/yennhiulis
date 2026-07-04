@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Nguyễn Lê Yến Nhi | Nhập môn Công nghệ số &amp; AI</title>
+  <meta name="description" content="Portfolio học tập 6 tuần của Nguyễn Lê Yến Nhi – Trường Đại học Ngoại ngữ ULIS-VNU. Hành trình ứng dụng AI vào học tập và sáng tạo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sky:           #7dd3fc;
+      --sky-dark:      #0284c7;
+      --sky-light:     #e0f2fe;
+      --teal:          #5eead4;
+      --teal-dark:     #0d9488;
+      --teal-light:    #ccfbf1;
+      --lime:          #a3e635;
+      --lime-dark:     #65a30d;
+      --lime-light:    #ecfccb;
+      --coral:         #fb923c;
+      --coral-dark:    #ea580c;
+      --coral-light:   #ffedd5;
+      --violet:        #a78bfa;
+      --violet-dark:   #7c3aed;
+      --violet-light:  #ede9fe;
+      --amber:         #fcd34d;
+      --amber-dark:    #d97706;
+      --amber-light:   #fef3c7;
+      --bg-color:      #f0f9ff;
+      --white:         #ffffff;
+      --surface:       rgba(255,255,255,0.82);
+      --text:          #0c2a3a;
+      --text-light:    #1e4d62;
+      --text-muted:    #5a8da0;
+      --shadow-sm:     0 4px 20px rgba(2,132,199,0.10);
+      --shadow-md:     0 8px 35px rgba(2,132,199,0.16);
+      --shadow-lg:     0 18px 55px rgba(2,132,199,0.22);
+      --radius:        26px;
+      --radius-sm:     14px;
+      --transition:    0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--bg-color);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    /* ===== BLOBS ===== */
+    .blob-bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+    .blob-bg span { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.25; }
+    .blob-bg .b1 { width:700px;height:700px;background:var(--sky);     top:-200px;left:-150px;animation:blobDrift 18s ease-in-out infinite alternate; }
+    .blob-bg .b2 { width:520px;height:520px;background:var(--teal);    top:15%;right:-160px;animation:blobDrift 22s ease-in-out infinite alternate-reverse; }
+    .blob-bg .b3 { width:450px;height:450px;background:var(--lime);    bottom:-80px;left:15%;animation:blobDrift 16s ease-in-out infinite alternate; }
+    .blob-bg .b4 { width:380px;height:380px;background:var(--coral);   bottom:25%;right:8%;animation:blobDrift 20s ease-in-out infinite alternate-reverse; }
+    .blob-bg .b5 { width:320px;height:320px;background:var(--violet);  top:48%;left:38%;animation:blobDrift 24s ease-in-out infinite alternate; }
+    .blob-bg .b6 { width:280px;height:280px;background:var(--amber);   top:75%;left:60%;animation:blobDrift 14s ease-in-out infinite alternate-reverse; }
+    @keyframes blobDrift { from { transform:translate(0,0) scale(1); } to { transform:translate(60px,40px) scale(1.1); } }
+    /* ===== BUBBLES ===== */
+    .bubbles-container { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+    .bubble { position:absolute; border-radius:50%; opacity:0; animation:bubbleRise linear infinite; border:1.5px solid rgba(255,255,255,0.55); }
+    @keyframes bubbleRise { 0%{opacity:0;transform:translateY(0) scale(1);}8%{opacity:0.5;}90%{opacity:0.15;}100%{opacity:0;transform:translateY(-105vh) scale(1.2);} }
+    /* ===== PROGRESS ===== */
+    .reading-progress { position:fixed;top:70px;left:0;height:3px;background:linear-gradient(90deg,var(--sky-dark),var(--teal-dark),var(--lime-dark));z-index:999;width:0%;transition:width 0.1s linear; }
+    /* ===== NAV ===== */
+    nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(240,249,255,0.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(125,211,252,0.35);padding:0 2.5rem;height:70px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(2,132,199,0.08);transition:var(--transition); }
+    .nav-logo { font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--sky-dark);text-decoration:none;font-weight:700;display:flex;align-items:center;gap:0.5rem; }
+    .nav-logo .logo-icon { width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--sky-dark),var(--teal-dark));display:flex;align-items:center;justify-content:center;font-size:1rem;color:white;animation:logoPulse 3s ease-in-out infinite;flex-shrink:0; }
+    @keyframes logoPulse { 0%,100%{transform:scale(1) rotate(0deg);}50%{transform:scale(1.08) rotate(3deg);} }
+    .nav-links { display:flex;gap:0.3rem;align-items:center; }
+    .nav-links a { text-decoration:none;color:var(--text-light);font-size:0.88rem;font-weight:500;padding:0.45rem 1.1rem;border-radius:50px;transition:var(--transition);white-space:nowrap; }
+    .nav-links a:hover { background:linear-gradient(135deg,var(--sky-light),var(--teal-light));color:var(--sky-dark);transform:translateY(-2px); }
+    .nav-links a.active { background:linear-gradient(135deg,var(--sky-dark),var(--teal-dark));color:white; }
+    /* ===== HERO ===== */
+    #hero { min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative; }
+    .hero-badge { display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,255,255,0.9);border:1.5px solid var(--sky);border-radius:50px;padding:0.5rem 1.6rem;font-size:0.82rem;font-weight:700;color:var(--sky-dark);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2.2rem;animation:fadeInDown 0.8s ease both;box-shadow:0 4px 24px rgba(2,132,199,0.14); }
+    .hero-badge::before { content:'🌿';font-size:1.1rem; }
+    .hero-avatar-wrap { position:relative;width:150px;height:150px;margin:0 auto 2rem;animation:fadeInDown 0.9s ease 0.1s both,floatAvatar 5s ease-in-out 1.5s infinite; }
+    @keyframes floatAvatar { 0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);} }
+    .hero-avatar-circle { width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,var(--sky-dark),var(--teal-dark),var(--lime-dark));display:flex;align-items:center;justify-content:center;font-size:3.5rem;box-shadow:0 0 0 6px rgba(125,211,252,0.35),0 0 0 14px rgba(125,211,252,0.12),var(--shadow-lg); }
+    .hero-avatar-ring { position:absolute;inset:-10px;border-radius:50%;border:2px dashed var(--teal);animation:spinRing 14s linear infinite;opacity:0.5; }
+    .hero-avatar-ring2 { position:absolute;inset:-20px;border-radius:50%;border:1.5px dotted var(--sky);animation:spinRing 22s linear infinite reverse;opacity:0.3; }
+    @keyframes spinRing { from{transform:rotate(0deg);}to{transform:rotate(360deg);} }
+    .hero-avatar-badge { position:absolute;bottom:-4px;right:-12px;background:linear-gradient(135deg,var(--teal-dark),var(--sky-dark));color:white;font-size:0.7rem;font-weight:700;padding:0.3rem 0.75rem;border-radius:50px;box-shadow:var(--shadow-sm);letter-spacing:0.05em;white-space:nowrap; }
+    .hero-name { font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6.5vw,5rem);font-weight:700;background:linear-gradient(135deg,var(--sky-dark) 0%,var(--teal-dark) 45%,var(--lime-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.15;margin-bottom:0.7rem;animation:fadeInUp 0.9s ease 0.2s both; }
+    .hero-major { font-size:1.05rem;color:var(--text-light);font-weight:500;margin-bottom:0.4rem;animation:fadeInUp 0.9s ease 0.3s both; }
+    .hero-school { font-size:0.9rem;color:var(--text-muted);margin-bottom:0.4rem;animation:fadeInUp 0.9s ease 0.35s both; }
+    .hero-id { font-size:0.85rem;color:var(--text-muted);margin-bottom:2.5rem;animation:fadeInUp 0.9s ease 0.4s both;font-weight:500; }
+    .hero-school strong { color:var(--sky-dark);font-weight:700; }
+    .hero-pov { max-width:580px;margin:0 auto 2.8rem;animation:fadeInUp 0.9s ease 0.45s both; }
+    .hero-pov blockquote { font-family:'Playfair Display',serif;font-size:1.25rem;font-style:italic;color:var(--text-light);line-height:1.65;padding:1.2rem 2rem 1.2rem 2.4rem;background:rgba(255,255,255,0.75);border-left:4px solid var(--teal-dark);border-radius:0 var(--radius-sm) var(--radius-sm) 0;box-shadow:var(--shadow-sm);position:relative; }
+    .hero-pov blockquote::before { content:'\201C';font-size:4.5rem;color:var(--teal);position:absolute;top:-1.2rem;left:0.4rem;font-style:normal;line-height:1; }
+    .hero-tags { display:flex;flex-wrap:wrap;gap:0.7rem;justify-content:center;margin-bottom:3.5rem;animation:fadeInUp 0.9s ease 0.5s both; }
+    .hero-tag { padding:0.45rem 1.2rem;border-radius:50px;font-size:0.85rem;font-weight:600;border:1.5px solid;background:var(--white);transition:var(--transition);cursor:default;display:flex;align-items:center;gap:0.4rem; }
+    .hero-tag:hover { transform:translateY(-4px) scale(1.04);box-shadow:var(--shadow-md); }
+    .hero-tag.t-sky    { border-color:var(--sky-dark);    color:var(--sky-dark); }
+    .hero-tag.t-teal   { border-color:var(--teal-dark);   color:var(--teal-dark); }
+    .hero-tag.t-lime   { border-color:var(--lime-dark);   color:var(--lime-dark); }
+    .hero-tag.t-coral  { border-color:var(--coral-dark);  color:var(--coral-dark); }
+    .hero-tag.t-violet { border-color:var(--violet-dark); color:var(--violet-dark); }
+    .hero-tag.t-amber  { border-color:var(--amber-dark);  color:var(--amber-dark); }
+    .scroll-hint { display:flex;flex-direction:column;align-items:center;gap:0.5rem;animation:fadeInUp 1s ease 0.8s both;color:var(--text-muted);font-size:0.83rem; }
+    .scroll-hint .arrow { width:34px;height:34px;border:2px solid var(--teal-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:bounceArrow 2s ease-in-out infinite;color:var(--teal-dark);font-size:1rem; }
+    @keyframes bounceArrow { 0%,100%{transform:translateY(0);}50%{transform:translateY(8px);} }
+    /* ===== SECTIONS ===== */
+    section { padding:6rem 2rem;max-width:1120px;margin:0 auto; }
+    .section-header { text-align:center;margin-bottom:4rem; }
+    .section-label { display:inline-block;font-size:0.82rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:0.8rem;padding:0.35rem 1.1rem;background:var(--teal-light);border-radius:50px; }
+    .section-title { font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.1rem);color:var(--text);line-height:1.25; }
+    .section-title em { color:var(--sky-dark);font-style:italic; }
+    .section-desc { margin-top:1.2rem;color:var(--text-light);font-size:1.05rem;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.85; }
+    /* ===== ABOUT ===== */
+    .about-layout { display:grid;grid-template-columns:1fr 1.15fr;gap:2.5rem;align-items:start; }
+    .about-left { display:flex;flex-direction:column;gap:1.8rem; }
+    .about-avatar-card { background:linear-gradient(135deg,var(--sky-light),var(--teal-light));border-radius:var(--radius);padding:2.5rem;text-align:center;box-shadow:var(--shadow-md);border:1px solid rgba(255,255,255,0.9);transition:var(--transition);position:relative;overflow:hidden; }
+    .about-avatar-card::before { content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.3); }
+    .about-avatar-card:hover { transform:translateY(-6px);box-shadow:var(--shadow-lg); }
+    .about-big-avatar { width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--sky-dark),var(--teal-dark));display:flex;align-items:center;justify-content:center;font-size:2.8rem;margin:0 auto 1.2rem;box-shadow:0 8px 30px rgba(2,132,199,0.25);position:relative;z-index:1; }
+    .about-avatar-name { font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:0.3rem;position:relative;z-index:1; }
+    .about-avatar-sub { font-size:0.85rem;color:var(--text-light);font-weight:500;position:relative;z-index:1; }
+    .about-card { background:var(--surface);backdrop-filter:blur(12px);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-sm);border:1px solid rgba(255,255,255,0.9);transition:var(--transition);position:relative;overflow:hidden; }
+    .about-card::before { content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--sky-dark),var(--teal-dark)); }
+    .about-card:hover { transform:translateY(-5px);box-shadow:var(--shadow-md);background:rgba(255,255,255,0.96); }
+    .about-card h3 { font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem; }
+    .about-card p,.about-card li { color:var(--text-light);font-size:0.96rem;line-height:1.85; }
+    .about-card ul { list-style:none;display:flex;flex-direction:column;gap:0.7rem; }
+    .about-card li { display:flex;gap:0.5rem;align-items:flex-start; }
+    .about-card li::before { content:'\2726';color:var(--teal-dark);font-size:0.8rem;flex-shrink:0;margin-top:4px; }
+    .info-grid { display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-top:0.5rem; }
+    .info-chip { background:rgba(255,255,255,0.85);border-radius:var(--radius-sm);padding:0.85rem 1rem;border:1px solid rgba(125,211,252,0.3);transition:var(--transition); }
+    .info-chip:hover { border-color:var(--sky);background:white;transform:translateY(-2px); }
+    .info-chip .chip-label { font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.25rem; }
+    .info-chip .chip-value { font-size:0.92rem;font-weight:700;color:var(--text); }
+    .stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem; }
+    .stat-box { background:rgba(255,255,255,0.85);border-radius:var(--radius-sm);padding:1.5rem;text-align:center;border:1px solid rgba(125,211,252,0.25);transition:var(--transition); }
+    .stat-box:hover { transform:translateY(-4px);box-shadow:var(--shadow-md); }
+    .stat-num { font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;background:linear-gradient(135deg,var(--sky-dark),var(--teal-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2; }
+    .stat-label { font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-top:0.3rem; }
+    /* ===== WEEKS ===== */
+    .weeks-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2.2rem; }
+    .week-card { background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;border:1px solid rgba(255,255,255,0.7);transition:var(--transition);position:relative;display:flex;flex-direction:column; }
+    .week-card:hover { transform:translateY(-10px) scale(1.01);box-shadow:var(--shadow-lg); }
+    .week-header { padding:1.8rem 1.8rem 1.5rem;background:linear-gradient(135deg,var(--week-bg1),var(--week-bg2));display:flex;align-items:center;gap:1.2rem;position:relative;overflow:hidden; }
+    .week-header::before { content:'';position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,0.15);top:-90px;right:-70px; }
+    .week-header::after { content:'';position:absolute;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,0.1);bottom:-45px;left:-25px; }
+    .week-number-badge { background:rgba(255,255,255,0.92);border-radius:18px;width:64px;height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 15px rgba(0,0,0,0.08);z-index:1; }
+    .week-number-badge .wn-label { font-size:0.6rem;font-weight:700;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase; }
+    .week-number-badge .wn-num { font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--text);line-height:1; }
+    .week-header-text { flex:1;min-width:0;z-index:1; }
+    .week-title { font-family:'Playfair Display',serif;font-size:1.18rem;color:var(--text);margin-bottom:0.25rem;line-height:1.3;font-weight:700; }
+    .week-subtitle { font-size:0.82rem;color:#1a3d50;font-weight:500;opacity:0.85; }
+    .week-body { padding:1.6rem;flex:1; }
+    .week-desc { font-size:0.93rem;color:var(--text-light);line-height:1.75;margin-bottom:1.3rem;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden; }
+    .week-tasks { list-style:none;margin-bottom:1.4rem; }
+    .week-tasks li { font-size:0.88rem;color:var(--text-light);padding:0.5rem 0;display:flex;align-items:flex-start;gap:0.65rem;border-bottom:1px dashed rgba(2,132,199,0.18); }
+    .week-tasks li:last-child { border-bottom:none; }
+    .week-tasks li .dot { width:8px;height:8px;border-radius:50%;background:var(--week-accent);margin-top:5px;flex-shrink:0; }
+    .week-footer { padding:0 1.7rem 1.7rem; }
+    .action-buttons { display:flex;gap:0.8rem;width:100%; }
+    .view-btn { flex:1;font-size:0.87rem;font-weight:600;color:var(--week-accent);background:rgba(255,255,255,0.85);border:1.5px solid var(--week-accent);border-radius:50px;padding:0.65rem 0;cursor:pointer;transition:var(--transition);font-family:inherit;text-align:center; }
+    .view-btn:hover { background:var(--week-accent);color:white;box-shadow:0 4px 15px rgba(0,0,0,0.12);transform:translateY(-2px); }
+    .download-btn { flex:1;font-size:0.87rem;font-weight:600;color:var(--white);background:var(--week-accent);border:1.5px solid var(--week-accent);border-radius:50px;padding:0.65rem 0;cursor:pointer;transition:var(--transition);font-family:inherit;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.4rem; }
+    .download-btn:hover { filter:brightness(1.08);box-shadow:0 6px 20px rgba(0,0,0,0.15);transform:translateY(-2px); }
+    /* Gallery */
+    .week-card.has-gallery .week-footer { padding:0; }
+    .gallery-toggle-btn { width:100%;padding:0.9rem 1rem;background:none;border:none;border-top:1px solid rgba(2,132,199,0.12);font-family:inherit;font-size:0.88rem;font-weight:600;color:var(--sky-dark);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:var(--transition); }
+    .gallery-toggle-btn:hover { background:var(--sky-light); }
+    .gallery-toggle-btn .arrow-icon { display:inline-block;transition:transform 0.35s ease; }
+    .gallery-toggle-btn.open .arrow-icon { transform:rotate(180deg); }
+    .inline-gallery { display:none;padding:1.2rem;background:linear-gradient(135deg,rgba(224,242,254,0.6),rgba(204,251,241,0.5));border-top:1px solid rgba(2,132,199,0.1); }
+    .inline-gallery.open { display:block; }
+    .gallery-label { font-size:0.82rem;font-weight:600;color:var(--sky-dark);margin-bottom:0.85rem;display:flex;align-items:center;gap:0.4rem; }
+    .inline-gallery-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem; }
+    .inline-gallery-item { border-radius:10px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:16/10;box-shadow:0 2px 10px rgba(0,0,0,0.08);transition:var(--transition);border:2px solid transparent; }
+    .inline-gallery-item:hover { transform:scale(1.04);border-color:var(--sky-dark);box-shadow:0 6px 20px rgba(2,132,199,0.25); }
+    .inline-gallery-item img { width:100%;height:100%;object-fit:cover;display:block; }
+    .img-num { position:absolute;bottom:4px;right:6px;background:rgba(2,132,199,0.85);color:white;font-size:0.65rem;font-weight:700;padding:2px 6px;border-radius:8px; }
+    /* Lightbox */
+    .lightbox-overlay { position:fixed;inset:0;z-index:9998;background:rgba(5,20,40,0.93);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:var(--transition);padding:1rem; }
+    .lightbox-overlay.active { opacity:1;visibility:visible; }
+    .lightbox-inner { position:relative;max-width:90vw;max-height:88vh;display:flex;align-items:center;justify-content:center; }
+    .lightbox-img { max-width:88vw;max-height:84vh;object-fit:contain;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,0.5);transform:scale(0.94);transition:transform 0.35s ease,opacity 0.18s ease; }
+    .lightbox-overlay.active .lightbox-img { transform:scale(1); }
+    .lightbox-close { position:fixed;top:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;color:white;transition:var(--transition);z-index:9999; }
+    .lightbox-close:hover { background:rgba(255,255,255,0.3);transform:rotate(90deg); }
+    .lightbox-nav { position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;color:white;transition:var(--transition);z-index:9999;line-height:1; }
+    .lightbox-nav:hover { background:rgba(255,255,255,0.3); }
+    .lightbox-prev { left:1rem; }
+    .lightbox-next { right:1rem; }
+    .lightbox-counter { position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;background:rgba(0,0,0,0.45);padding:0.4rem 1.2rem;border-radius:50px;z-index:9999; }
+    /* Modal */
+    .modal-overlay { position:fixed;inset:0;z-index:9999;background:rgba(5,25,50,0.82);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:var(--transition);padding:2rem; }
+    .modal-overlay.active { opacity:1;visibility:visible; }
+    .modal-content { background:var(--white);border-radius:var(--radius);width:100%;max-width:820px;max-height:88vh;overflow-y:auto;padding:3rem;position:relative;transform:translateY(40px) scale(0.97);transition:var(--transition);box-shadow:0 30px 80px rgba(0,0,0,0.3); }
+    .modal-overlay.active .modal-content { transform:translateY(0) scale(1); }
+    .modal-close { position:absolute;top:1.5rem;right:1.5rem;width:42px;height:42px;border-radius:50%;background:var(--sky-light);border:none;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;color:var(--text);transition:var(--transition); }
+    .modal-close:hover { background:var(--sky-dark);color:white;transform:rotate(90deg); }
+    .modal-title { font-family:'Playfair Display',serif;font-size:2rem;color:var(--text);margin-bottom:1.5rem; }
+    .modal-body { color:var(--text-light);line-height:1.85;font-size:1.02rem; }
+    .modal-body h4 { color:var(--text);margin:1.5rem 0 0.6rem;font-size:1.05rem;font-weight:700; }
+    .modal-body ul { margin-left:1.5rem;margin-bottom:1rem; }
+    .modal-body li { margin-bottom:0.4rem; }
+    .modal-body p { margin-bottom:1rem; }
+    .modal-body strong { color:var(--sky-dark); }
+    /* Rubric */
+    .rubric-section { background:linear-gradient(135deg,rgba(224,242,254,0.5),rgba(204,251,241,0.4));border-radius:32px;margin:0 1rem;padding:5rem 2rem; }
+    .rubric-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2rem;max-width:1120px;margin-left:auto;margin-right:auto; }
+    .rubric-item { background:rgba(255,255,255,0.85);border-radius:var(--radius-sm);padding:1.4rem 1.2rem;text-align:center;border:1px solid rgba(125,211,252,0.25);transition:var(--transition); }
+    .rubric-item:hover { transform:translateY(-4px);box-shadow:var(--shadow-md); }
+    .rubric-icon { font-size:2rem;margin-bottom:0.6rem; }
+    .rubric-label { font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:0.3rem; }
+    .rubric-sub { font-size:0.75rem;color:var(--text-muted);line-height:1.4; }
+    /* Summary */
+    .summary-wrapper { display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start; }
+    .summary-card { background:var(--surface);backdrop-filter:blur(12px);border-radius:var(--radius);padding:2.2rem;box-shadow:var(--shadow-sm);border:1px solid rgba(255,255,255,0.9);transition:var(--transition); }
+    .summary-card:hover { transform:translateY(-5px);box-shadow:var(--shadow-md); }
+    .summary-card h3 { font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem; }
+    .summary-card p,.summary-card li { font-size:0.97rem;color:var(--text-light);line-height:1.85; }
+    .summary-card ul { list-style:none;display:flex;flex-direction:column;gap:0.6rem; }
+    .summary-card li { display:flex;gap:0.5rem;align-items:flex-start; }
+    .summary-card li::before { content:'\1F4A1';flex-shrink:0;margin-top:1px; }
+    .farewell-block { margin-top:3rem;text-align:center;padding:2.8rem;background:linear-gradient(135deg,rgba(224,242,254,0.7),rgba(204,251,241,0.6),rgba(236,252,203,0.5));border-radius:var(--radius);border:1px solid rgba(255,255,255,0.85);box-shadow:var(--shadow-sm);position:relative;overflow:hidden; }
+    .farewell-quote { font-family:'Playfair Display',serif;font-size:1.6rem;font-style:italic;color:var(--teal-dark);margin-bottom:1rem;line-height:1.5; }
+    .farewell-divider { width:60px;height:3px;background:linear-gradient(90deg,var(--sky-dark),var(--teal-dark));border-radius:2px;margin:1rem auto; }
+    .farewell-summary { font-size:1rem;color:var(--text-light);max-width:620px;margin:0 auto;line-height:1.85; }
+    /* Footer */
+    footer { background:linear-gradient(135deg,var(--sky-light) 0%,var(--teal-light) 50%,var(--lime-light) 100%);text-align:center;padding:4rem 2rem;margin-top:4rem;position:relative;overflow:hidden; }
+    footer > * { position:relative;z-index:1; }
+    .footer-name { font-family:'Playfair Display',serif;font-size:2rem;color:var(--text);margin-bottom:0.5rem;font-weight:700; }
+    footer p { font-size:0.95rem;color:var(--text-light);line-height:1.9; }
+    .footer-divider { width:60px;height:3px;background:linear-gradient(90deg,var(--sky-dark),var(--teal-dark));border-radius:2px;margin:1rem auto; }
+    .footer-chips { display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin-top:1.2rem; }
+    .footer-chip { background:rgba(255,255,255,0.7);border:1px solid rgba(2,132,199,0.2);border-radius:50px;padding:0.35rem 1rem;font-size:0.82rem;color:var(--text-light);font-weight:500; }
+    /* Animations */
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-25px);}to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeInUp   { from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);} }
+    .reveal      { opacity:0;transform:translateY(35px);transition:opacity 0.9s ease,transform 0.9s ease; }
+    .reveal.visible { opacity:1;transform:translateY(0); }
+    .reveal-left { opacity:0;transform:translateX(-40px);transition:opacity 0.9s ease,transform 0.9s ease; }
+    .reveal-left.visible { opacity:1;transform:translateX(0); }
+    .reveal-right { opacity:0;transform:translateX(40px);transition:opacity 0.9s ease,transform 0.9s ease; }
+    .reveal-right.visible { opacity:1;transform:translateX(0); }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width:8px; }
+    ::-webkit-scrollbar-track { background:var(--bg-color); }
+    ::-webkit-scrollbar-thumb { background:var(--sky);border-radius:4px; }
+    ::-webkit-scrollbar-thumb:hover { background:var(--sky-dark); }
+    /* Responsive */
+    @media (max-width:768px) {
+      .nav-links { display:none; }
+      .about-layout,.summary-wrapper { grid-template-columns:1fr; }
+      .info-grid { grid-template-columns:1fr 1fr; }
+      .hero-name { font-size:2.5rem; }
+      section { padding:4rem 1.5rem; }
+      .action-buttons { flex-direction:column; }
+      .weeks-grid { grid-template-columns:1fr; }
+      .rubric-grid { grid-template-columns:repeat(2,1fr); }
+      .stats-row { grid-template-columns:repeat(2,1fr); }
+      .inline-gallery-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:480px) {
+      .info-grid { grid-template-columns:1fr; }
+      .stats-row { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="blob-bg">
+  <span class="b1"></span><span class="b2"></span><span class="b3"></span>
+  <span class="b4"></span><span class="b5"></span><span class="b6"></span>
+</div>
+<div class="bubbles-container" id="bubblesContainer"></div>
+<div class="reading-progress" id="readingProgress"></div>
+
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-icon">&#10022;</div>
+    Portfolio &middot; Y&#x1ebfn Nhi
+  </a>
+  <div class="nav-links">
+    <a href="#about"   id="nav-about">Gi&#7899;i thi&#7879;u</a>
+    <a href="#weeks"   id="nav-weeks">6 Tu&#7847;n h&#7885;c</a>
+    <a href="#rubric"  id="nav-rubric">Ti&ecirc;u ch&iacute;</a>
+    <a href="#summary" id="nav-summary">T&#7893;ng k&#7871;t</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-badge">Portfolio K&#7929; Thu&#7853;t S&#7889; &middot; 2026</div>
+  <div class="hero-avatar-wrap">
+    <div class="hero-avatar-ring2"></div>
+    <div class="hero-avatar-ring"></div>
+    <div class="hero-avatar-circle">&#127807;</div>
+    <div class="hero-avatar-badge">ULIS &middot; 2025</div>
+  </div>
+  <h1 class="hero-name">Nguy&#7877;n L&ecirc; Y&#7871;n Nhi</h1>
+  <p class="hero-major">Tr&#432;&#7901;ng &#272;&#7841;i h&#7885;c Ngo&#7841;i ng&#7919; &nbsp;&middot;&nbsp; ULIS &ndash; VNU</p>
+  <p class="hero-school"><strong>ULIS &ndash; VNU</strong> &nbsp;|&nbsp; &#272;&#7841;i h&#7885;c Ngo&#7841;i ng&#7919; &ndash; &#272;HQGHN</p>
+  <p class="hero-id">M&atilde; sinh vi&ecirc;n: 25041764</p>
+  <div class="hero-pov">
+    <blockquote>
+      T&#7915;ng b&#432;&#7899;c nh&#7887; trong h&agrave;nh tr&igrave;nh s&#7889; &ndash; m&#7895;i b&agrave;i h&#7885;c l&agrave; m&#7897;t c&aacute;nh c&#7917;a m&#7899;i m&#7903; ra cho t&#432;&#417;ng lai c&#7911;a m&igrave;nh.
+    </blockquote>
+  </div>
+  <div class="hero-tags">
+    <span class="hero-tag t-sky">&#128193; Qu&#7843;n l&yacute; t&#7879;p tin</span>
+    <span class="hero-tag t-teal">&#128269; T&igrave;m ki&#7871;m h&#7885;c thu&#7853;t</span>
+    <span class="hero-tag t-violet">&#9997;&#65039; Prompt Engineering</span>
+    <span class="hero-tag t-coral">&#129309; H&#7907;p t&aacute;c tr&#7921;c tuy&#7871;n</span>
+    <span class="hero-tag t-lime">&#127912; AI s&aacute;ng t&#7841;o</span>
+    <span class="hero-tag t-amber">&#9878;&#65039; AI c&oacute; tr&aacute;ch nhi&#7879;m</span>
+  </div>
+  <div class="scroll-hint">
+    <span>Kh&aacute;m ph&aacute; h&agrave;nh tr&igrave;nh</span>
+    <div class="arrow">&#8595;</div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-label">&#10022; V&#7873; b&#7843;n th&acirc;n &amp; Portfolio</span>
+    <h2 class="section-title">Xin ch&agrave;o, m&igrave;nh l&agrave; <em>Y&#7871;n Nhi</em></h2>
+    <p class="section-desc">
+      &#272;&acirc;y l&agrave; kh&ocirc;ng gian l&#432;u tr&#7919; h&agrave;nh tr&igrave;nh 6 tu&#7847;n h&#7885;c &#8220;Nh&#7853;p m&ocirc;n C&ocirc;ng ngh&#7879; s&#7889; v&agrave; &#7912;ng d&#7909;ng Tr&iacute; tu&#7879; nh&acirc;n t&#7841;o&#8221; &ndash; n&#417;i ng&ocirc;n ng&#7919; g&#7863;p g&#7905; c&ocirc;ng ngh&#7879;.
+    </p>
+  </div>
+  <div class="about-layout">
+    <div class="about-left">
+      <div class="about-avatar-card reveal-left">
+        <div class="about-big-avatar">&#127807;</div>
+        <div class="about-avatar-name">Nguy&#7877;n L&ecirc; Y&#7871;n Nhi</div>
+        <div class="about-avatar-sub">Sinh vi&ecirc;n Tr&#432;&#7901;ng &#272;&#7841;i h&#7885;c Ngo&#7841;i ng&#7919; &ndash; ULIS</div>
+      </div>
+      <div class="about-card reveal-left" style="transition-delay:0.1s">
+        <h3>&#127891; Th&ocirc;ng tin h&#7885;c t&#7853;p</h3>
+        <div class="info-grid">
+          <div class="info-chip"><div class="chip-label">Tr&#432;&#7901;ng</div><div class="chip-value">ULIS &ndash; VNU</div></div>
+          <div class="info-chip"><div class="chip-label">&#272;&#417;n v&#7883;</div><div class="chip-value">&#272;H Ngo&#7841;i ng&#7919;</div></div>
+          <div class="info-chip"><div class="chip-label">M&atilde; sinh vi&ecirc;n</div><div class="chip-value">25041764</div></div>
+          <div class="info-chip"><div class="chip-label">N&#259;m h&#7885;c</div><div class="chip-value">2025 &ndash; 2026</div></div>
+        </div>
+      </div>
+      <div class="stats-row reveal-left" style="transition-delay:0.2s">
+        <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Tu&#7847;n h&#7885;c t&#7853;p</div></div>
+        <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Nhi&#7879;m v&#7909; ho&agrave;n th&agrave;nh</div></div>
+        <div class="stat-box"><div class="stat-num">25</div><div class="stat-label">&#7842;nh minh h&#7885;a</div></div>
+        <div class="stat-box"><div class="stat-num">5</div><div class="stat-label">T&agrave;i li&#7879;u n&#7897;p</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2rem;">
+      <div class="about-card reveal-right">
+        <h3>&#128075; Gi&#7899;i thi&#7879;u b&#7843;n th&acirc;n</h3>
+        <p>M&igrave;nh l&agrave; Y&#7871;n Nhi &ndash; sinh vi&ecirc;n n&#259;m nh&#7845;t t&#7841;i Tr&#432;&#7901;ng &#272;&#7841;i h&#7885;c Ngo&#7841;i ng&#7919;, &#272;HQGHN (ULIS). M&igrave;nh &#273;ang tr&#7843;i qua m&#7897;t h&agrave;nh tr&igrave;nh h&#7885;c t&#7853;p th&uacute; v&#7883; khi kh&aacute;m ph&aacute; th&#7871; gi&#7899;i c&ocirc;ng ngh&#7879; s&#7889; v&agrave; tr&iacute; tu&#7879; nh&acirc;n t&#7841;o.</p>
+        <br>
+        <p>M&ocirc;n h&#7885;c &#8220;Nh&#7853;p m&ocirc;n C&ocirc;ng ngh&#7879; s&#7889; v&agrave; &#7912;ng d&#7909;ng AI&#8221; &#273;&atilde; gi&uacute;p m&igrave;nh ti&#7871;p c&#7853;n c&ocirc;ng ngh&#7879; theo m&#7897;t c&aacute;ch ho&agrave;n to&agrave;n m&#7899;i &ndash; kh&ocirc;ng ch&#7881; l&agrave; s&#7917; d&#7909;ng m&agrave; c&ograve;n hi&#7875;u v&agrave; l&agrave;m ch&#7911; c&ocirc;ng ngh&#7879; m&#7897;t c&aacute;ch c&oacute; tr&aacute;ch nhi&#7879;m.</p>
+      </div>
+      <div class="about-card reveal-right" style="transition-delay:0.1s">
+        <h3>&#127919; M&#7909;c ti&ecirc;u c&#7911;a Portfolio</h3>
+        <ul>
+          <li>H&#7879; th&#7889;ng h&oacute;a to&agrave;n b&#7897; ki&#7871;n th&#7913;c v&agrave; k&#7929; n&#259;ng s&#7889; h&#7885;c &#273;&#432;&#7907;c trong 6 tu&#7847;n.</li>
+          <li>Th&#7875; hi&#7879;n kh&#7843; n&#259;ng &#7913;ng d&#7909;ng th&#7921;c ti&#7877;n qua t&#7915;ng b&agrave;i t&#7853;p c&#7909; th&#7875;.</li>
+          <li>L&#432;u tr&#7919; s&#7843;n ph&#7849;m c&aacute; nh&acirc;n &#273;&#7875; truy c&#7853;p v&agrave; chia s&#7867; trong t&#432;&#417;ng lai.</li>
+          <li>Ph&#7843;n t&#432; v&#7873; s&#7921; tr&#432;&#7903;ng th&agrave;nh trong t&#432; duy v&agrave; n&#259;ng l&#7921;c s&#7889; c&#7911;a b&#7843;n th&acirc;n.</li>
+          <li>X&acirc;y d&#7921;ng h&#7891; s&#417; h&#7885;c t&#7853;p chuy&ecirc;n nghi&#7879;p ph&#7909;c v&#7909; qu&aacute; tr&igrave;nh ph&aacute;t tri&#7875;n c&aacute; nh&acirc;n.</li>
+        </ul>
+      </div>
+      <div class="about-card reveal-right" style="transition-delay:0.2s">
+        <h3>&#128161; &#272;i&#7873;u m&igrave;nh t&acirc;m &#273;&#7855;c nh&#7845;t</h3>
+        <p>Ranh gi&#7899;i gi&#7919;a &#8220;s&#7917; d&#7909;ng AI&#8221; v&agrave; &#8220;b&#7883; AI thao t&uacute;ng&#8221; &ndash; ch&#7881; khi ta gi&#7919; &#273;&#432;&#7907;c t&#432; duy &#273;&#7897;c l&#7853;p, AI m&#7899;i th&#7921;c s&#7921; tr&#7903; th&agrave;nh c&ocirc;ng c&#7909; h&#7895; tr&#7907; hi&#7879;u qu&#7843;. C&ocirc;ng ngh&#7879; l&agrave; ph&#432;&#417;ng ti&#7879;n, con ng&#432;&#7901;i m&#7899;i l&agrave; trung t&acirc;m.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="weeks">
+  <div class="section-header reveal">
+    <span class="section-label">&#10022; S&#7843;n ph&#7849;m th&#7921;c h&agrave;nh</span>
+    <h2 class="section-title">H&agrave;nh tr&igrave;nh <em>6 tu&#7847;n</em> h&#7885;c t&#7853;p</h2>
+    <p class="section-desc">M&#7895;i tu&#7847;n l&agrave; m&#7897;t k&#7929; n&#259;ng s&#7889; m&#7899;i &ndash; t&#7915; qu&#7843;n l&yacute; t&#7879;p tin &#273;&#7871;n s&#7917; d&#7909;ng AI c&oacute; tr&aacute;ch nhi&#7879;m, m&igrave;nh &#273;&atilde; t&#7915;ng b&#432;&#7899;c x&acirc;y d&#7921;ng n&#7873;n t&#7843;ng c&ocirc;ng ngh&#7879; s&#7889; v&#7919;ng ch&#7855;c.</p>
+  </div>
+  <div class="weeks-grid">
+
+    <!-- WEEK 1 -->
+    <div class="week-card has-gallery reveal" style="--week-bg1:#e0f2fe;--week-bg2:#ccfbf1;--week-accent:#0284c7;transition-delay:0s">
+      <div class="week-header">
+        <div class="week-number-badge"><span class="wn-label">Tu&#7847;n</span><span class="wn-num">1</span></div>
+        <div class="week-header-text">
+          <h3 class="week-title">Qu&#7843;n l&yacute; t&#7879;p &amp; th&#432; m&#7909;c</h3>
+          <p class="week-subtitle">M&aacute;y t&iacute;nh &amp; Thi&#7871;t b&#7883; ngo&#7841;i vi</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Th&#7921;c h&agrave;nh c&aacute;c thao t&aacute;c c&#417; b&#7843;n v&#7899;i h&#7879; th&#7889;ng t&#7879;p tin tr&ecirc;n Windows: t&#7841;o, &#273;&#7893;i t&ecirc;n, sao ch&eacute;p, di chuy&#7875;n v&agrave; x&oacute;a th&#432; m&#7909;c/t&#7879;p tin m&#7897;t c&aacute;ch khoa h&#7885;c v&agrave; logic.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>T&#7841;o c&acirc;y th&#432; m&#7909;c v&#7899;i quy t&#7855;c &#273;&#7863;t t&ecirc;n nh&#7845;t qu&aacute;n</li>
+          <li><div class="dot"></div>S&#7917; d&#7909;ng ph&iacute;m t&#7855;t t&#7889;i &#432;u th&#7901;i gian (Ctrl+C/V/X/Z)</li>
+          <li><div class="dot"></div>Hi&#7875;u c&#417; ch&#7871; Recycle Bin v&agrave; x&oacute;a v&#297;nh vi&#7877;n (Shift+Del)</li>
+          <li><div class="dot"></div>Ch&#7909;p &#7843;nh m&agrave;n h&igrave;nh minh h&#7885;a to&agrave;n b&#7897; qu&aacute; tr&igrave;nh</li>
+        </ul>
+      </div>
+      <div class="week-footer" style="padding:0">
+        <button class="gallery-toggle-btn" onclick="openModal('m1')" style="color:#0284c7;border-top:none;">
+          &#128203; Xem chi ti&#7871;t b&agrave;i h&#7885;c
+        </button>
+        <button class="gallery-toggle-btn" id="gallery-btn-w1" onclick="toggleGallery('w1')">
+          &#128444;&#65039; Xem 25 &#7843;nh minh h&#7885;a &nbsp;<span class="arrow-icon">&#9660;</span>
+        </button>
+        <div class="inline-gallery" id="gallery-w1">
+          <div class="gallery-label">&#128193; Th&#432; m&#7909;c Bai1 &ndash; 25 &#7843;nh ch&#7909;p m&agrave;n h&igrave;nh th&#7921;c h&agrave;nh</div>
+          <div class="inline-gallery-grid" id="gallery-grid-w1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-card reveal" style="--week-bg1:#ccfbf1;--week-bg2:#ecfccb;--week-accent:#0d9488;transition-delay:0.1s">
+      <div class="week-header">
+        <div class="week-number-badge"><span class="wn-label">Tu&#7847;n</span><span class="wn-num">2</span></div>
+        <div class="week-header-text">
+          <h3 class="week-title">T&igrave;m ki&#7871;m &amp; &#272;&aacute;nh gi&aacute;</h3>
+          <p class="week-subtitle">Khai th&aacute;c d&#7919; li&#7879;u h&#7885;c thu&#7853;t</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Th&#7921;c hi&#7879;n t&igrave;m ki&#7871;m th&ocirc;ng tin n&acirc;ng cao v&agrave; &#273;&aacute;nh gi&aacute; &#273;&#7897; tin c&#7853;y c&#7911;a ngu&#7891;n t&agrave;i li&#7879;u h&#7885;c thu&#7853;t. &Aacute;p d&#7909;ng c&aacute;c to&aacute;n t&#7917; t&igrave;m ki&#7871;m chuy&ecirc;n bi&#7879;t tr&ecirc;n Google v&agrave; c&aacute;c c&#417; s&#7903; d&#7919; li&#7879;u h&#7885;c thu&#7853;t.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>S&#7917; d&#7909;ng to&aacute;n t&#7917; site:, filetype:, intitle:, "..."</li>
+          <li><div class="dot"></div>&#272;&aacute;nh gi&aacute; &#273;&#7897; tin c&#7853;y ngu&#7891;n th&ocirc;ng tin h&#7885;c thu&#7853;t</li>
+          <li><div class="dot"></div>Tra c&#7913;u t&agrave;i li&#7879;u t&#7915; Springer, ScienceDirect, Google Scholar</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w2" onclick="openModal('m2')">Xem chi ti&#7871;t</button>
+          <a href="b2.docx" download class="download-btn" id="dl-w2">&#128229; T&#7843;i B&agrave;i 2</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week-card reveal" style="--week-bg1:#ede9fe;--week-bg2:#e0f2fe;--week-accent:#7c3aed;transition-delay:0.2s">
+      <div class="week-header">
+        <div class="week-number-badge"><span class="wn-label">Tu&#7847;n</span><span class="wn-num">3</span></div>
+        <div class="week-header-text">
+          <h3 class="week-title">Vi&#7871;t Prompt hi&#7879;u qu&#7843;</h3>
+          <p class="week-subtitle">T&#7893;ng quan v&#7873; AI &amp; Prompt Engineering</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Ph&acirc;n t&iacute;ch t&aacute;c v&#7909; h&#7885;c t&#7853;p v&agrave; th&#7921;c h&agrave;nh k&#7929; n&#259;ng vi&#7871;t c&acirc;u l&#7879;nh (Prompt Engineering). So s&aacute;nh s&#7921; kh&aacute;c bi&#7879;t gi&#7919;a c&aacute;c c&#7845;p &#273;&#7897; prompt t&#7915; c&#417; b&#7843;n &#273;&#7871;n n&acirc;ng cao.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>K&#7929; thu&#7853;t Role-prompting v&agrave; Chain-of-Thought</li>
+          <li><div class="dot"></div>C&ocirc;ng th&#7913;c 4C: Character &ndash; Context &ndash; Constraints &ndash; Conversation</li>
+          <li><div class="dot"></div>So s&aacute;nh 3 c&#7845;p &#273;&#7897; prompt, ph&acirc;n t&iacute;ch v&agrave; &#273;&aacute;nh gi&aacute; k&#7871;t qu&#7843;</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w3" onclick="openModal('m3')">Xem chi ti&#7871;t</button>
+          <a href="b3.docx" download class="download-btn" id="dl-w3">&#128229; T&#7843;i B&agrave;i 3</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week-card reveal" style="--week-bg1:#ecfccb;--week-bg2:#fef3c7;--week-accent:#65a30d;transition-delay:0s">
+      <div class="week-header">
+        <div class="week-number-badge"><span class="wn-label">Tu&#7847;n</span><span class="wn-num">4</span></div>
+        <div class="week-header-text">
+          <h3 class="week-title">H&#7907;p t&aacute;c tr&#7921;c tuy&#7871;n</h3>
+          <p class="week-subtitle">Giao ti&#7871;p trong m&ocirc;i tr&#432;&#7901;ng s&#7889;</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Tri&#7875;n khai d&#7921; &aacute;n nh&oacute;m v&#7899;i b&#7897; ba c&ocirc;ng c&#7909; c&#7897;ng t&aacute;c: Google Docs, Google Drive v&agrave; Microsoft Teams. H&#7885;c c&aacute;ch l&agrave;m vi&#7879;c nh&oacute;m hi&#7879;u qu&#7843; trong kh&ocirc;ng gian s&#7889; hi&#7879;n &#273;&#7841;i.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>So&#7841;n th&#7843;o &#273;&#7891;ng th&#7901;i v&agrave; theo d&otilde;i l&#7883;ch s&#7917; tr&ecirc;n Google Docs</li>
+          <li><div class="dot"></div>Qu&#7843;n l&yacute; t&agrave;i nguy&ecirc;n nh&oacute;m c&oacute; ph&acirc;n c&#7845;p tr&ecirc;n Google Drive</li>
+          <li><div class="dot"></div>Giao ti&#7871;p, h&#7885;p video v&agrave; giao nhi&#7879;m v&#7909; qua Microsoft Teams</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w4" onclick="openModal('m4')">Xem chi ti&#7871;t</button>
+          <a href="b4.docx" download class="download-btn" id="dl-w4">&#128229; T&#7843;i B&agrave;i 4</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 5 -->
+    <div class="week-card reveal" style="--week-bg1:#ffedd5;--week-bg2:#fef3c7;--week-accent:#ea580c;transition-delay:0.1s">
+      <div class="week-header">
+        <div class="week-number-badge"><span class="wn-label">Tu&#7847;n</span><span class="wn-num">5</span></div>
+        <div class="week-header-text">
+          <h3 class="week-title">S&aacute;ng t&#7841;o v&#7899;i AI</h3>
+          <p class="week-subtitle">AI t&#7841;o sinh n&#7897;i dung s&#7889;</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">S&#7917; d&#7909;ng c&aacute;c c&ocirc;ng c&#7909; AI t&#7841;o sinh &#273;&#7875; s&#7843;n xu&#7845;t n&#7897;i dung s&aacute;ng t&#7841;o: k&#7871;t h&#7907;p Gemini, AI Image v&agrave; Canva AI &#273;&#7875; t&#7841;o ra s&#7843;n ph&#7849;m truy&#7873;n th&ocirc;ng chuy&ecirc;n nghi&#7879;p.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>D&ugrave;ng Google Gemini l&ecirc;n k&#7883;ch b&#7843;n n&#7897;i dung chi ti&#7871;t</li>
+          <li><div class="dot"></div>AI Image t&#7841;o h&igrave;nh &#7843;nh minh h&#7885;a &#273;&#7897;c &#273;&aacute;o, ph&ugrave; h&#7907;p phong c&aacute;ch</li>
+          <li><div class="dot"></div>Canva AI ho&agrave;n thi&#7879;n b&#7889; c&#7909;c s&#7843;n ph&#7849;m chuy&ecirc;n nghi&#7879;p</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w5" onclick="openModal('m5')">Xem chi ti&#7871;t</button>
+          <a href="b5.docx" download class="download-btn" id="dl-w5">&#128229; T&#7843;i B&agrave;i 5</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 6 -->
+    <div class="week-card reveal" style="--week-bg1:#e0f2fe;--week-bg2:#ede9fe;--week-accent:#0284c7;transition-delay:0.2s">
+      <div class="week-header">
+        <div class="week-number-badge"><span class="wn-label">Tu&#7847;n</span><span class="wn-num">6</span></div>
+        <div class="week-header-text">
+          <h3 class="week-title">AI c&oacute; tr&aacute;ch nhi&#7879;m</h3>
+          <p class="week-subtitle">An to&agrave;n &amp; Li&ecirc;m ch&iacute;nh h&#7885;c thu&#7853;t</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Ph&acirc;n t&iacute;ch ch&iacute;nh s&aacute;ch AI c&#7911;a &#272;HQGHN v&agrave; x&acirc;y d&#7921;ng b&#7897; nguy&ecirc;n t&#7855;c s&#7917; d&#7909;ng AI c&aacute; nh&acirc;n. Th&#7921;c h&agrave;nh minh b&#7841;ch, t&#432; duy ph&#7843;n bi&#7879;n v&agrave; b&#7843;o v&#7879; li&ecirc;m ch&iacute;nh h&#7885;c thu&#7853;t.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>B&#7897; nguy&ecirc;n t&#7855;c c&aacute; nh&acirc;n "5 KH&Ocirc;NG &ndash; 1 C&Oacute;"</li>
+          <li><div class="dot"></div>Tr&aacute;nh &#273;&#7841;o v&#259;n c&ocirc;ng ngh&#7879;, khai b&aacute;o AI minh b&#7841;ch</li>
+          <li><div class="dot"></div>T&#432; duy ph&#7843;n bi&#7879;n, l&agrave;m ch&#7911; ho&agrave;n to&agrave;n s&#7843;n ph&#7849;m</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w6" onclick="openModal('m6')">Xem chi ti&#7871;t</button>
+          <a href="b6.docx" download class="download-btn" id="dl-w6">&#128229; T&#7843;i B&agrave;i 6</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RUBRIC -->
+<div class="rubric-section" id="rubric">
+  <div class="section-header reveal" style="max-width:1120px;margin:0 auto 4rem">
+    <span class="section-label">&#10022; Ti&ecirc;u ch&iacute; &#273;&aacute;nh gi&aacute;</span>
+    <h2 class="section-title">Rubric <em>Portfolio</em></h2>
+    <p class="section-desc">Portfolio &#273;&#432;&#7907;c &#273;&aacute;nh gi&aacute; theo 8 ti&ecirc;u ch&iacute; t&#7915; thi&#7871;t k&#7871; t&#7893;ng th&#7875; &#273;&#7871;n t&#7915;ng nhi&#7879;m v&#7909; h&#7885;c t&#7853;p v&agrave; ph&#7847;n t&#7893;ng k&#7871;t c&aacute; nh&acirc;n.</p>
+  </div>
+  <div class="rubric-grid reveal">
+    <div class="rubric-item"><div class="rubric-icon">&#127912;</div><div class="rubric-label">Thi&#7871;t k&#7871; &amp; C&#7845;u tr&uacute;c</div><div class="rubric-sub">M&agrave;u s&#7855;c nh&#7845;t qu&aacute;n, &#273;i&#7873;u h&#432;&#7899;ng khoa h&#7885;c, t&#7889;i &#432;u tr&#7843;i nghi&#7879;m</div></div>
+    <div class="rubric-item"><div class="rubric-icon">&#128193;</div><div class="rubric-label">Nhi&#7879;m v&#7909; 1</div><div class="rubric-sub">Qu&#7843;n l&yacute; t&#7879;p &amp; th&#432; m&#7909;c v&#7899;i quy t&#7855;c &#273;&#7863;t t&ecirc;n s&aacute;ng t&#7841;o</div></div>
+    <div class="rubric-item"><div class="rubric-icon">&#128269;</div><div class="rubric-label">Nhi&#7879;m v&#7909; 2</div><div class="rubric-sub">T&igrave;m ki&#7871;m &amp; &#273;&aacute;nh gi&aacute; th&ocirc;ng tin h&#7885;c thu&#7853;t hi&#7879;u qu&#7843;</div></div>
+    <div class="rubric-item"><div class="rubric-icon">&#9997;&#65039;</div><div class="rubric-label">Nhi&#7879;m v&#7909; 3</div><div class="rubric-sub">Vi&#7871;t Prompt Engineering theo c&ocirc;ng th&#7913;c chu&#7849;n</div></div>
+    <div class="rubric-item"><div class="rubric-icon">&#129309;</div><div class="rubric-label">Nhi&#7879;m v&#7909; 4</div><div class="rubric-sub">H&#7907;p t&aacute;c tr&#7921;c tuy&#7871;n v&#7899;i b&#7897; c&ocirc;ng c&#7909; Google &amp; Teams</div></div>
+    <div class="rubric-item"><div class="rubric-icon">&#127775;</div><div class="rubric-label">Nhi&#7879;m v&#7909; 5</div><div class="rubric-sub">S&aacute;ng t&#7841;o n&#7897;i dung s&#7889; v&#7899;i AI t&#7841;o sinh chuy&ecirc;n nghi&#7879;p</div></div>
+    <div class="rubric-item"><div class="rubric-icon">&#9878;&#65039;</div><div class="rubric-label">Nhi&#7879;m v&#7909; 6</div><div class="rubric-sub">AI c&oacute; tr&aacute;ch nhi&#7879;m &amp; li&ecirc;m ch&iacute;nh h&#7885;c thu&#7853;t</div></div>
+    <div class="rubric-item"><div class="rubric-icon">&#127807;</div><div class="rubric-label">T&#7893;ng k&#7871;t &amp; &#272;&aacute;nh gi&aacute;</div><div class="rubric-sub">Ph&acirc;n t&iacute;ch s&#7921; tr&#432;&#7903;ng th&agrave;nh v&agrave; h&#432;&#7899;ng &aacute;p d&#7909;ng t&#432;&#417;ng lai</div></div>
+  </div>
+</div>
+
+<section id="summary">
+  <div class="section-header reveal">
+    <span class="section-label">&#10022; T&#7893;ng k&#7871;t h&agrave;nh tr&igrave;nh</span>
+    <h2 class="section-title">Nh&igrave;n l&#7841;i <em>6 tu&#7847;n</em> tr&#432;&#7903;ng th&agrave;nh</h2>
+    <p class="section-desc">H&#7885;c ph&#7847;n &#8220;Nh&#7853;p m&ocirc;n C&ocirc;ng ngh&#7879; s&#7889; v&agrave; &#7912;ng d&#7909;ng AI&#8221; &#273;&atilde; thay &#273;&#7893;i t&#432; duy v&agrave; c&aacute;ch ti&#7871;p c&#7853;n c&ocirc;ng ngh&#7879; c&#7911;a m&igrave;nh m&#7897;t c&aacute;ch s&acirc;u s&#7855;c.</p>
+  </div>
+  <div class="summary-wrapper">
+    <div class="summary-card reveal-left">
+      <h3>&#10024; C&#7843;m nh&#7853;n c&aacute; nh&acirc;n</h3>
+      <p>H&#7885;c ph&#7847;n n&agrave;y &#273;&atilde; mang l&#7841;i cho m&igrave;nh nh&#7919;ng g&oacute;c nh&igrave;n ho&agrave;n to&agrave;n m&#7899;i v&#7873; th&#7871; gi&#7899;i c&ocirc;ng ngh&#7879;. T&#7915; m&#7897;t ng&#432;&#7901;i ch&#7881; bi&#7871;t s&#7917; d&#7909;ng m&aacute;y t&iacute;nh c&#417; b&#7843;n, m&igrave;nh &#273;&atilde; h&#7885;c c&aacute;ch t&#432; duy nh&#432; m&#7897;t ng&#432;&#7901;i l&agrave;m k&#7929; thu&#7853;t s&#7889; th&#7921;c s&#7921;.</p>
+      <br>
+      <p>&#272;i&#7873;u m&igrave;nh tr&acirc;n tr&#7885;ng nh&#7845;t l&agrave; nh&#7853;n ra r&#7857;ng AI kh&ocirc;ng ph&#7843;i l&agrave; c&acirc;u tr&#7843; l&#7901;i t&#7921; &#273;&#7897;ng &ndash; m&agrave; l&agrave; &#273;&#7889;i t&aacute;c c&#7847;n &#273;&#432;&#7907;c h&#432;&#7899;ng d&#7851;n &#273;&uacute;ng c&aacute;ch. T&#432; duy &#273;&#7897;c l&#7853;p v&#7851;n l&agrave; y&#7871;u t&#7889; then ch&#7889;t.</p>
+    </div>
+    <div class="summary-card reveal-right">
+      <h3>&#127807; K&#7929; n&#259;ng &#273;&atilde; h&#7885;c &#273;&#432;&#7907;c</h3>
+      <ul>
+        <li>T&#7893; ch&#7913;c v&agrave; qu&#7843;n l&yacute; d&#7919; li&#7879;u s&#7889; hi&#7879;u qu&#7843; tr&ecirc;n m&aacute;y t&iacute;nh Windows.</li>
+        <li>T&igrave;m ki&#7871;m n&acirc;ng cao, &#273;&aacute;nh gi&aacute; th&ocirc;ng tin v&agrave; li&ecirc;m ch&iacute;nh h&#7885;c thu&#7853;t.</li>
+        <li>T&#432; duy thu&#7853;t to&aacute;n qua Prompt Engineering v&#7899;i AI.</li>
+        <li>L&agrave;m vi&#7879;c nh&oacute;m xuy&ecirc;n bi&ecirc;n gi&#7899;i b&#7857;ng c&ocirc;ng c&#7909; Cloud hi&#7879;n &#273;&#7841;i.</li>
+        <li>S&aacute;ng t&#7841;o n&#7897;i dung s&#7889; v&#7899;i s&#7921; h&#7895; tr&#7907; c&#7911;a AI t&#7841;o sinh &#273;a c&ocirc;ng c&#7909;.</li>
+        <li>Nh&#7853;n th&#7913;c v&#7873; &#273;&#7841;o &#273;&#7913;c, tr&aacute;ch nhi&#7879;m v&agrave; minh b&#7841;ch khi d&ugrave;ng AI.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="farewell-block reveal" style="margin-top:2.5rem">
+    <p class="farewell-quote">&#8220;C&ocirc;ng ngh&#7879; l&agrave; ph&#432;&#417;ng ti&#7879;n &ndash; con ng&#432;&#7901;i m&#7899;i l&agrave; trung t&acirc;m.&#8221;</p>
+    <div class="farewell-divider"></div>
+    <p class="farewell-summary">
+      6 tu&#7847;n ng&#7855;n ng&#7911;i nh&#432;ng &#273;&#7847;y &#7855;p ki&#7871;n th&#7913;c v&agrave; tr&#7843;i nghi&#7879;m. M&igrave;nh s&#7869; ti&#7871;p t&#7909;c &#7913;ng d&#7909;ng nh&#7919;ng k&#7929; n&#259;ng s&#7889; n&agrave;y v&agrave;o h&agrave;nh tr&igrave;nh h&#7885;c t&#7853;p v&agrave; ph&aacute;t tri&#7875;n b&#7843;n th&acirc;n trong t&#432;&#417;ng lai.<br>
+      <span style="font-style:italic;color:var(--text-muted);margin-top:0.8rem;display:block">&ndash; Nguy&#7877;n L&ecirc; Y&#7871;n Nhi &middot; ULIS VNU &middot; 25041764 &middot; 2026 &ndash;</span>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <h2 class="footer-name">Nguy&#7877;n L&ecirc; Y&#7871;n Nhi</h2>
+  <p>Tr&#432;&#7901;ng &#272;&#7841;i h&#7885;c Ngo&#7841;i ng&#7919; &nbsp;&middot;&nbsp; ULIS &ndash; VNU &nbsp;&middot;&nbsp; 25041764</p>
+  <div class="footer-divider"></div>
+  <p>Portfolio H&#7885;c t&#7853;p &ndash; Nh&#7853;p m&ocirc;n C&ocirc;ng ngh&#7879; s&#7889; &amp; &#7912;ng d&#7909;ng AI</p>
+  <div class="footer-chips">
+    <span class="footer-chip">&#128193; Qu&#7843;n l&yacute; t&#7879;p tin</span>
+    <span class="footer-chip">&#128269; T&igrave;m ki&#7871;m h&#7885;c thu&#7853;t</span>
+    <span class="footer-chip">&#9997;&#65039; Prompt Engineering</span>
+    <span class="footer-chip">&#129309; H&#7907;p t&aacute;c tr&#7921;c tuy&#7871;n</span>
+    <span class="footer-chip">&#127912; AI s&aacute;ng t&#7841;o</span>
+    <span class="footer-chip">&#9878;&#65039; AI c&oacute; tr&aacute;ch nhi&#7879;m</span>
+  </div>
+  <p style="margin-top:1.2rem;font-size:0.85rem;opacity:0.6;">&copy; 2026 &middot; &#272;&#432;&#7907;c thi&#7871;t k&#7871; v&#7899;i &#128153; v&agrave; s&#7921; t&#7881; m&#7881;</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()" id="modal-close-btn">&times;</button>
+    <div id="modal-dynamic-content"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">&#8249;</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Anh minh hoa" />
+  </div>
+  <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">&#8250;</button>
+  <div class="lightbox-counter" id="lightbox-counter">1 / 25</div>
+</div>
+
+<!-- MODAL TEMPLATES -->
+<template id="data-m1">
+  <h2 class="modal-title">&#128193; Tu&#7847;n 1: Qu&#7843;n l&yacute; t&#7879;p &amp; th&#432; m&#7909;c</h2>
+  <div class="modal-body">
+    <h4>M&#7909;c ti&ecirc;u b&agrave;i h&#7885;c:</h4>
+    <p>N&#7855;m v&#7919;ng quy t&#7855;c t&#7893; ch&#7913;c d&#7919; li&#7879;u s&#7889; tr&ecirc;n m&aacute;y t&iacute;nh, gi&uacute;p t&igrave;m ki&#7871;m v&agrave; qu&#7843;n l&yacute; t&agrave;i li&#7879;u h&#7885;c t&#7853;p m&#7897;t c&aacute;ch t&#7889;i &#432;u, chu&#7849;n b&#7883; n&#7873;n t&#7843;ng cho c&aacute;c k&#7929; n&#259;ng s&#7889; cao h&#417;n.</p>
+    <h4>C&aacute;c k&#7929; n&#259;ng &#273;&atilde; th&#7921;c h&agrave;nh:</h4>
+    <ul>
+      <li>M&#7903; File Explorer nhanh b&#7857;ng ph&iacute;m t&#7855;t <strong>Windows + E</strong>.</li>
+      <li>T&#7841;o c&#7845;u tr&uacute;c th&#432; m&#7909;c v&#7899;i quy t&#7855;c &#273;&#7863;t t&ecirc;n r&otilde; r&agrave;ng, nh&#7845;t qu&aacute;n.</li>
+      <li>T&#7841;o, &#273;&#7893;i t&ecirc;n v&agrave; s&#7855;p x&#7871;p c&aacute;c t&#7879;p v&#259;n b&#7843;n (.txt, .docx, .pdf).</li>
+      <li>S&#7917; d&#7909;ng th&agrave;nh th&#7841;o <strong>Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+Z</strong>.</li>
+      <li>Hi&#7875;u c&#417; ch&#7871; x&oacute;a t&#7841;m th&#7901;i (Recycle Bin) v&agrave; x&oacute;a v&#297;nh vi&#7877;n (Shift+Delete).</li>
+      <li>&Aacute;p d&#7909;ng t&#432; duy ph&acirc;n lo&#7841;i t&#7879;p theo ch&#7911; &#273;&#7873;, th&#7901;i gian, m&#7913;c &#273;&#7897; &#432;u ti&ecirc;n.</li>
+    </ul>
+    <h4>S&#7843;n ph&#7849;m n&#7897;p:</h4>
+    <p>Th&#432; m&#7909;c <strong>Bai1</strong> ch&#7913;a 25 &#7843;nh ch&#7909;p m&agrave;n h&igrave;nh minh h&#7885;a to&agrave;n b&#7897; qu&aacute; tr&igrave;nh th&#7921;c h&agrave;nh qu&#7843;n l&yacute; t&#7879;p tin tr&ecirc;n Windows.</p>
+    <h4>K&#7871;t qu&#7843; &amp; B&agrave;i h&#7885;c:</h4>
+    <p>H&igrave;nh th&agrave;nh th&oacute;i quen l&agrave;m vi&#7879;c ng&#259;n n&#7855;p tr&ecirc;n kh&ocirc;ng gian s&#7889;, ti&#7871;t ki&#7879;m th&#7901;i gian &#273;&aacute;ng k&#7875; khi t&igrave;m ki&#7871;m t&agrave;i li&#7879;u h&#7885;c t&#7853;p. M&#7897;t h&#7879; th&#7889;ng t&#7879;p tin g&#7885;n g&agrave;ng gi&#7889;ng nh&#432; m&#7897;t t&#7915; v&#7921;ng &#273;&#432;&#7907;c s&#7855;p x&#7871;p &#273;&uacute;ng &ndash; gi&uacute;p tra c&#7913;u nhanh v&agrave; hi&#7879;u qu&#7843; h&#417;n.</p>
+  </div>
+</template>
+<template id="data-m2">
+  <h2 class="modal-title">&#128269; Tu&#7847;n 2: T&igrave;m ki&#7871;m &amp; &#272;&aacute;nh gi&aacute; th&ocirc;ng tin</h2>
+  <div class="modal-body">
+    <h4>K&#7929; n&#259;ng t&igrave;m ki&#7871;m n&acirc;ng cao:</h4>
+    <p>&Aacute;p d&#7909;ng c&aacute;c to&aacute;n t&#7917; t&igrave;m ki&#7871;m chuy&ecirc;n bi&#7879;t tr&ecirc;n Google v&agrave; c&aacute;c c&#417; s&#7903; d&#7919; li&#7879;u h&#7885;c thu&#7853;t &#273;&#7875; t&igrave;m t&agrave;i li&#7879;u ch&#7845;t l&#432;&#7907;ng cao.</p>
+    <h4>C&aacute;c to&aacute;n t&#7917; &#273;&atilde; s&#7917; d&#7909;ng:</h4>
+    <ul>
+      <li><strong>site:</strong> &ndash; T&igrave;m ki&#7871;m trong ph&#7841;m vi trang web c&#7909; th&#7875;</li>
+      <li><strong>filetype:</strong> &ndash; L&#7885;c theo &#273;&#7883;nh d&#7841;ng file (filetype:pdf)</li>
+      <li><strong>intitle:</strong> &ndash; T&igrave;m theo ti&ecirc;u &#273;&#7873; trang web</li>
+      <li><strong>"c&#7909;m t&#7915; ch&iacute;nh x&aacute;c"</strong> &ndash; T&igrave;m c&#7909;m t&#7915; nguy&ecirc;n v&#7865;n</li>
+      <li><strong>-t&#7915;_lo&#7841;i_tr&#7915;</strong> &ndash; L&#7885;c b&#7887; k&#7871;t qu&#7843; kh&ocirc;ng li&ecirc;n quan</li>
+    </ul>
+    <h4>Ti&ecirc;u ch&iacute; &#273;&aacute;nh gi&aacute; ngu&#7891;n th&ocirc;ng tin:</h4>
+    <ul>
+      <li><strong>T&aacute;c gi&#7843;:</strong> Chuy&ecirc;n m&ocirc;n, t&#7893; ch&#7913;c uy t&iacute;n, c&oacute; th&#7875; x&aacute;c minh.</li>
+      <li><strong>C&#417; quan xu&#7845;t b&#7843;n:</strong> T&#7841;p ch&iacute; khoa h&#7885;c c&oacute; peer-review.</li>
+      <li><strong>Ph&#432;&#417;ng ph&aacute;p nghi&ecirc;n c&#7913;u:</strong> R&otilde; r&agrave;ng, c&oacute; d&#7851;n ch&#7913;ng c&#7909; th&#7875;.</li>
+      <li><strong>T&iacute;nh c&#7853;p nh&#7853;t:</strong> Th&ocirc;ng tin m&#7899;i nh&#7845;t, ph&ugrave; h&#7907;p th&#7901;i &#273;i&#7875;m.</li>
+    </ul>
+    <h4>K&#7871;t qu&#7843;:</h4>
+    <p>X&acirc;y d&#7921;ng b&#7843;ng t&#7893;ng h&#7907;p &#273;&aacute;nh gi&aacute; &#273;&#7897; tin c&#7853;y c&#7911;a t&agrave;i li&#7879;u. K&#7929; n&#259;ng &#273;&aacute;nh gi&aacute; th&ocirc;ng tin c&#361;ng quan tr&#7885;ng kh&ocirc;ng k&eacute;m k&#7929; n&#259;ng t&igrave;m ki&#7871;m &ndash; &#273;&#7863;c bi&#7879;t trong th&#7901;i &#273;&#7841;i AI t&#7841;o ra n&#7897;i dung tr&agrave;n lan.</p>
+  </div>
+</template>
+<template id="data-m3">
+  <h2 class="modal-title">&#9997;&#65039; Tu&#7847;n 3: Vi&#7871;t Prompt hi&#7879;u qu&#7843;</h2>
+  <div class="modal-body">
+    <h4>T&#7893;ng quan v&#7873; Prompt Engineering:</h4>
+    <p>H&#7885;c c&aacute;ch &#8220;n&oacute;i chuy&#7879;n&#8221; v&#7899;i AI m&#7897;t c&aacute;ch hi&#7879;u qu&#7843; &ndash; gi&#7889;ng nh&#432; h&#7885;c ng&#7919; ph&aacute;p &#273;&#7875; giao ti&#7871;p tr&ocirc;i ch&#7843;y b&#7857;ng ngo&#7841;i ng&#7919;. Prompt l&agrave; ng&ocirc;n ng&#7919; giao ti&#7871;p gi&#7919;a con ng&#432;&#7901;i v&agrave; AI.</p>
+    <h4>3 c&#7845;p &#273;&#7897; Prompt &#273;&atilde; th&#7921;c nghi&#7879;m:</h4>
+    <ul>
+      <li><strong>C&#417; b&#7843;n:</strong> C&acirc;u h&#7887;i &#273;&#417;n gi&#7843;n &rarr; K&#7871;t qu&#7843; chung chung, thi&#7871;u chi&#7873;u s&acirc;u.</li>
+      <li><strong>C&#7843;i ti&#7871;n:</strong> Th&ecirc;m &#273;&#7889;i t&#432;&#7907;ng m&#7909;c ti&ecirc;u + &#273;&#7883;nh d&#7841;ng y&ecirc;u c&#7847;u &rarr; K&#7871;t qu&#7843; c&#7909; th&#7875; h&#417;n.</li>
+      <li><strong>N&acirc;ng cao:</strong> Role-prompting + Chain-of-Thought + r&agrave;ng bu&#7897;c &rarr; K&#7871;t qu&#7843; xu&#7845;t s&#7855;c.</li>
+    </ul>
+    <h4>C&ocirc;ng th&#7913;c v&agrave;ng 4C:</h4>
+    <ul>
+      <li><strong>Character (C&#7845;p quy&#7873;n):</strong> Giao vai tr&ograve; c&#7909; th&#7875; cho AI</li>
+      <li><strong>Context (B&#7889;i c&#7843;nh):</strong> Cung c&#7845;p &#273;&#7847;y &#273;&#7911; th&ocirc;ng tin n&#7873;n</li>
+      <li><strong>Constraints (R&agrave;ng bu&#7897;c):</strong> &#272;&#7863;t gi&#7899;i h&#7841;n r&otilde; r&agrave;ng v&#7873; &#273;&#7897; d&agrave;i, &#273;&#7883;nh d&#7841;ng</li>
+      <li><strong>Conversation (Ph&#7843;n h&#7891;i):</strong> T&#7841;o v&ograve;ng l&#7863;p h&#7887;i-&#273;&aacute;p hai chi&#7873;u &#273;&#7875; tinh ch&#7881;nh</li>
+    </ul>
+    <h4>K&#7871;t qu&#7843; &amp; B&agrave;i h&#7885;c:</h4>
+    <p>Prompt t&#7889;t = T&#432; duy r&otilde; r&agrave;ng + Ng&ocirc;n ng&#7919; ch&iacute;nh x&aacute;c + B&#7889;i c&#7843;nh &#273;&#7847;y &#273;&#7911;. K&#7929; n&#259;ng vi&#7871;t prompt c&#361;ng l&agrave; k&#7929; n&#259;ng t&#432; duy ph&acirc;n t&iacute;ch v&agrave; giao ti&#7871;p ch&iacute;nh x&aacute;c.</p>
+  </div>
+</template>
+<template id="data-m4">
+  <h2 class="modal-title">&#129309; Tu&#7847;n 4: H&#7907;p t&aacute;c tr&#7921;c tuy&#7871;n</h2>
+  <div class="modal-body">
+    <h4>B&#7897; 3 c&ocirc;ng c&#7909; c&#7897;ng t&aacute;c:</h4>
+    <ul>
+      <li><strong>Google Docs:</strong> So&#7841;n th&#7843;o n&#7897;i dung &#273;&#7891;ng th&#7901;i, theo d&otilde;i l&#7883;ch s&#7917; ch&#7881;nh s&#7917;a minh b&#7841;ch, comment v&agrave; g&#7907;i &yacute; thay &#273;&#7893;i c&oacute; tr&aacute;ch nhi&#7879;m.</li>
+      <li><strong>Google Drive:</strong> L&#432;u tr&#7919; t&agrave;i nguy&ecirc;n t&#7853;p trung, ph&acirc;n c&#7845;p th&#432; m&#7909;c theo ch&#7911; &#273;&#7873;, chia s&#7867; quy&#7873;n truy c&#7853;p linh ho&#7841;t v&agrave; an to&agrave;n.</li>
+      <li><strong>Microsoft Teams:</strong> Giao ti&#7871;p t&#7913;c th&#7901;i qua Channels, t&#7893; ch&#7913;c h&#7885;p video, chia s&#7867; file v&agrave; giao nhi&#7879;m v&#7909; (@mention).</li>
+    </ul>
+    <h4>Th&aacute;ch th&#7913;c &#273;&atilde; v&#432;&#7907;t qua:</h4>
+    <ul>
+      <li>Xung &#273;&#7897;t &#273;&#7883;nh d&#7841;ng v&#259;n b&#7843;n &rarr; D&ugrave;ng Heading Styles chu&#7849;n tr&ecirc;n Docs.</li>
+      <li>Th&ocirc;ng tin quan tr&#7885;ng b&#7883; tr&ocirc;i &rarr; Gh&igrave;m tin nh&#7855;n v&agrave; tag @Important tr&ecirc;n Teams.</li>
+      <li>Ph&acirc;n c&ocirc;ng ch&#432;a r&otilde; r&agrave;ng &rarr; T&#7841;o b&#7843;ng ph&acirc;n c&ocirc;ng chi ti&#7871;t trong Google Sheets.</li>
+    </ul>
+    <h4>B&agrave;i h&#7885;c c&#7889;t l&otilde;i:</h4>
+    <p>C&ocirc;ng c&#7909; t&#7889;t ch&#7881; l&agrave; &#273;i&#7873;u ki&#7879;n c&#7847;n &ndash; &#273;i&#7873;u ki&#7879;n &#273;&#7911; l&agrave; k&#7929; n&#259;ng giao ti&#7871;p r&otilde; r&agrave;ng v&agrave; tinh th&#7847;n tr&aacute;ch nhi&#7879;m trong nh&oacute;m. &#272;&acirc;y l&agrave; k&#7929; n&#259;ng s&#7869; d&ugrave;ng su&#7889;t cu&#7897;c &#273;&#7901;i.</p>
+  </div>
+</template>
+<template id="data-m5">
+  <h2 class="modal-title">&#127912; Tu&#7847;n 5: S&aacute;ng t&#7841;o n&#7897;i dung v&#7899;i AI</h2>
+  <div class="modal-body">
+    <h4>Quy tr&igrave;nh ph&#7889;i h&#7907;p &#273;a c&ocirc;ng c&#7909;:</h4>
+    <ul>
+      <li><strong>Google Gemini:</strong> L&ecirc;n k&#7883;ch b&#7843;n n&#7897;i dung, t&#7841;o b&#7843;n th&#7843;o v&#259;n b&#7843;n ph&ugrave; h&#7907;p &#273;&#7889;i t&#432;&#7907;ng m&#7909;c ti&ecirc;u v&agrave; ng&#7919; c&#7843;nh c&#7909; th&#7875;.</li>
+      <li><strong>AI Image Generator:</strong> T&#7841;o h&igrave;nh &#7843;nh minh h&#7885;a &#273;&#7897;c &#273;&aacute;o, ph&ugrave; h&#7907;p v&#7899;i phong c&aacute;ch v&agrave; th&ocirc;ng &#273;i&#7879;p thi&#7871;t k&#7871;.</li>
+      <li><strong>Canva AI:</strong> T&aacute;ch n&#7873;n, ph&#7889;i m&agrave;u t&#7921; &#273;&#7897;ng, d&agrave;n trang b&#7889; c&#7909;c chuy&ecirc;n nghi&#7879;p theo xu h&#432;&#7899;ng.</li>
+    </ul>
+    <h4>Ph&acirc;n t&iacute;ch t&#7927; l&#7879; &#273;&oacute;ng g&oacute;p:</h4>
+    <p>AI h&#7895; tr&#7907; t&#7841;o ra ~40% n&#7897;i dung th&ocirc; ban &#273;&#7847;u. C&aacute; nh&acirc;n &#273;&oacute;ng g&oacute;p 60% v&agrave;o vi&#7879;c: tinh ch&#7881;nh t&#7915; ng&#7919;, th&ecirc;m &yacute; t&#432;&#7903;ng s&aacute;ng t&#7841;o ri&ecirc;ng, ki&#7875;m duy&#7879;t ch&#7845;t l&#432;&#7907;ng v&agrave; ho&agrave;n thi&#7879;n s&#7843;n ph&#7849;m cu&#7889;i.</p>
+    <h4>B&agrave;i h&#7885;c quan tr&#7885;ng:</h4>
+    <p>AI l&agrave; c&ocirc;ng c&#7909; t&#259;ng t&#7889;c tuy&#7879;t v&#7901;i, nh&#432;ng con ng&#432;&#7901;i ph&#7843;i l&agrave; ng&#432;&#7901;i duy&#7879;t v&agrave; quy&#7871;t &#273;&#7883;nh cu&#7889;i c&ugrave;ng. Tr&aacute;nh r&#7853;p khu&ocirc;n, thi&#7871;u c&aacute; t&iacute;nh &ndash; &#273;&oacute; l&agrave; b&#7851;y l&#7899;n nh&#7845;t khi d&ugrave;ng AI s&aacute;ng t&#7841;o.</p>
+  </div>
+</template>
+<template id="data-m6">
+  <h2 class="modal-title">&#9878;&#65039; Tu&#7847;n 6: S&#7917; d&#7909;ng AI c&oacute; tr&aacute;ch nhi&#7879;m</h2>
+  <div class="modal-body">
+    <h4>Ch&iacute;nh s&aacute;ch AI c&#7911;a &#272;HQGHN:</h4>
+    <p>&#272;HQGHN &aacute;p d&#7909;ng ch&iacute;nh s&aacute;ch <strong>&#8220;T&iacute;ch h&#7907;p c&oacute; ki&#7875;m so&aacute;t&#8221;</strong>: Cho ph&eacute;p d&ugrave;ng AI &#273;&#7875; g&#7907;i &yacute;, s&#7917;a l&#7895;i, tra c&#7913;u th&ocirc;ng tin &ndash; nh&#432;ng nghi&ecirc;m c&#7845;m &#8220;&#272;&#7841;o v&#259;n AI&#8221; (copy-paste nguy&ecirc;n v&#259;n). Sinh vi&ecirc;n ch&#7883;u 100% tr&aacute;ch nhi&#7879;m v&#7873; n&#7897;i dung n&#7897;p.</p>
+    <h4>B&#7897; nguy&ecirc;n t&#7855;c c&aacute; nh&acirc;n &#8220;5 KH&Ocirc;NG &ndash; 1 C&Oacute;&#8221;:</h4>
+    <ul>
+      <li><strong>KH&Ocirc;NG</strong> copy-paste nguy&ecirc;n v&#259;n k&#7871;t qu&#7843; AI v&agrave;o b&agrave;i n&#7897;p.</li>
+      <li><strong>KH&Ocirc;NG</strong> tin t&#432;&#7903;ng ho&agrave;n to&agrave;n m&agrave; kh&ocirc;ng fact-check th&ocirc;ng tin AI cung c&#7845;p.</li>
+      <li><strong>KH&Ocirc;NG</strong> cung c&#7845;p th&ocirc;ng tin c&aacute; nh&acirc;n v&agrave; b&#7843;o m&#7853;t cho AI.</li>
+      <li><strong>KH&Ocirc;NG</strong> b&#7887; qua t&agrave;i li&#7879;u g&#7889;c, ch&#7881; d&ugrave;ng t&oacute;m t&#7855;t c&#7911;a AI.</li>
+      <li><strong>KH&Ocirc;NG</strong> che gi&#7845;u vi&#7879;c c&oacute; d&ugrave;ng AI trong b&agrave;i l&agrave;m.</li>
+      <li><strong>C&Oacute;</strong> t&#432; duy ph&#7843;n bi&#7879;n, l&agrave;m ch&#7911; ho&agrave;n to&agrave;n s&#7843;n ph&#7849;m c&#7911;a m&igrave;nh.</li>
+    </ul>
+    <h4>K&#7871;t lu&#7853;n:</h4>
+    <p>L&agrave;m ch&#7911; AI b&#7855;t &#273;&#7847;u t&#7915; vi&#7879;c hi&#7875;u r&otilde;: <strong>AI l&agrave; g&#432;&#417;ng ph&#7843;n chi&#7871;u t&#432; duy c&#7911;a b&#7841;n</strong> &ndash; prompt t&#7889;t &#273;&#7871;n t&#7915; &#273;&#7847;u &oacute;c t&#7889;t, kh&ocirc;ng ph&#7843;i ng&#432;&#7907;c l&#7841;i.</p>
+  </div>
+</template>
+
+<script>
+  // Bubbles
+  (function(){
+    var colors=['rgba(125,211,252,0.5)','rgba(94,234,212,0.5)','rgba(163,230,53,0.4)','rgba(251,146,60,0.35)','rgba(167,139,250,0.4)','rgba(252,211,77,0.45)'];
+    var c=document.getElementById('bubblesContainer');
+    for(var i=0;i<22;i++){
+      var el=document.createElement('div');
+      el.className='bubble';
+      var s=Math.random()*18+6;
+      el.style.cssText='left:'+Math.random()*100+'vw;bottom:-30px;width:'+s+'px;height:'+s+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-duration:'+(Math.random()*16+10)+'s;animation-delay:'+(Math.random()*10)+'s;';
+      c.appendChild(el);
+    }
+  })();
+
+  // Reading progress
+  var pb=document.getElementById('readingProgress');
+  window.addEventListener('scroll',function(){
+    var st=window.scrollY,dh=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(dh>0?st/dh*100:0)+'%';
+  });
+
+  // Scroll reveal
+  function doReveal(){
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){
+      if(el.getBoundingClientRect().top<window.innerHeight-80) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll',doReveal);
+  window.addEventListener('load',doReveal);
+  doReveal();
+
+  // Active nav
+  window.addEventListener('scroll',function(){
+    var cur='';
+    document.querySelectorAll('section[id]').forEach(function(s){if(window.scrollY>=s.offsetTop-160)cur=s.id;});
+    document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+  });
+
+  // Modal
+  var mOverlay=document.getElementById('modal-overlay');
+  function openModal(id){
+    var t=document.getElementById('data-'+id);
+    if(t){document.getElementById('modal-dynamic-content').innerHTML=t.innerHTML;mOverlay.classList.add('active');document.body.style.overflow='hidden';}
+  }
+  function closeModal(){mOverlay.classList.remove('active');document.body.style.overflow='';}
+  mOverlay.addEventListener('click',function(e){if(e.target===mOverlay)closeModal();});
+
+  // Gallery
+  var bai1=[
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (18).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (19).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (20).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (21).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (22).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (23).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (24).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (25).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (26).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (27).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (28).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (29).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (30).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (31).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (32).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (33).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (34).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (35).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (36).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (37).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (38).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (39) (1).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (39).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (40).png',
+    '\u1ea2nh ch\u1ee5p m\u00e0n h\u00ecnh (41).png'
+  ];
+  var gg=document.getElementById('gallery-grid-w1');
+  bai1.forEach(function(name,idx){
+    var item=document.createElement('div');
+    item.className='inline-gallery-item';
+    item.title='Anh '+(idx+1)+': '+name;
+    item.onclick=function(){openLightbox(idx);};
+    var img=document.createElement('img');
+    img.src='Bai1/'+encodeURIComponent(name);
+    img.alt='Anh minh hoa '+(idx+1);
+    img.loading='lazy';
+    img.onerror=function(){
+      item.style.background='linear-gradient(135deg,#e0f2fe,#ccfbf1)';
+      item.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:4px"><span style="font-size:1.4rem">\uD83D\uDDBC\uFE0F</span><span style="font-size:0.65rem;color:#0284c7;font-weight:700;">#'+(idx+1)+'</span></div>';
+    };
+    var num=document.createElement('div');
+    num.className='img-num';
+    num.textContent=(idx+1);
+    item.appendChild(img);
+    item.appendChild(num);
+    gg.appendChild(item);
+  });
+  function toggleGallery(id){
+    var g=document.getElementById('gallery-'+id);
+    var b=document.getElementById('gallery-btn-'+id);
+    g.classList.toggle('open');
+    b.classList.toggle('open');
+  }
+
+  // Lightbox
+  var lbOverlay=document.getElementById('lightbox-overlay');
+  var lbImg=document.getElementById('lightbox-img');
+  var lbCounter=document.getElementById('lightbox-counter');
+  var lbIdx=0;
+  lbImg.style.transition='opacity 0.18s ease';
+  function openLightbox(idx){
+    lbIdx=idx;
+    lbImg.src='Bai1/'+encodeURIComponent(bai1[lbIdx]);
+    lbCounter.textContent=(lbIdx+1)+' / '+bai1.length;
+    lbOverlay.classList.add('active');
+    document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){lbOverlay.classList.remove('active');document.body.style.overflow='';}
+  function lightboxNav(dir){
+    lbIdx=(lbIdx+dir+bai1.length)%bai1.length;
+    lbImg.style.opacity='0';
+    setTimeout(function(){
+      lbImg.src='Bai1/'+encodeURIComponent(bai1[lbIdx]);
+      lbCounter.textContent=(lbIdx+1)+' / '+bai1.length;
+      lbImg.style.opacity='1';
+    },180);
+  }
+  lbOverlay.addEventListener('click',function(e){if(e.target===lbOverlay)closeLightbox();});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeLightbox();closeModal();}
+    if(lbOverlay.classList.contains('active')){
+      if(e.key==='ArrowLeft')lightboxNav(-1);
+      if(e.key==='ArrowRight')lightboxNav(1);
+    }
+  });
+</script>
+</body>
+</html>
