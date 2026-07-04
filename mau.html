@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Nguyễn Phương Thảo | Nhập môn Công nghệ số & AI</title>
+  <meta name="description" content="Portfolio học tập 6 tuần của Nguyễn Phương Thảo – Ngôn ngữ Hàn, ULIS-VNU. Hành trình ứng dụng AI vào học tập và sáng tạo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      /* Warm Blush & Peach Fresh Palette */
+      --rose:          #f9a8c9;
+      --rose-dark:     #e8699a;
+      --peach:         #ffd6b3;
+      --peach-dark:    #f59560;
+      --lavender:      #d8c8f0;
+      --lavender-dark: #9b7fd4;
+      --sky:           #b8e4f9;
+      --sky-dark:      #5aabdc;
+      --mint:          #b8f0d8;
+      --mint-dark:     #45b880;
+      --butter:        #fff0b3;
+      --butter-dark:   #e6c435;
+
+      --bg-color:      #fff8f8;
+      --white:         #ffffff;
+      --surface:       rgba(255,255,255,0.75);
+      
+      --text:          #3a2845;
+      --text-light:    #6b5177;
+      --text-muted:    #aa8bb8;
+      
+      --shadow-sm:     0 4px 20px rgba(232, 105, 154, 0.10);
+      --shadow-md:     0 8px 35px rgba(232, 105, 154, 0.16);
+      --shadow-lg:     0 18px 55px rgba(232, 105, 154, 0.22);
+
+      --radius:        26px;
+      --radius-sm:     14px;
+      --transition:    0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--bg-color);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== DECORATIVE BLOBS ===== */
+    .blob-bg {
+      position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none;
+    }
+    .blob-bg span {
+      position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.35;
+    }
+    .blob-bg .b1 { width:650px; height:650px; background:var(--rose);     top:-180px; left:-120px; animation: blobDrift 16s ease-in-out infinite alternate; }
+    .blob-bg .b2 { width:500px; height:500px; background:var(--butter);   top:20%; right:-130px; animation: blobDrift 20s ease-in-out infinite alternate-reverse; }
+    .blob-bg .b3 { width:420px; height:420px; background:var(--lavender); bottom:-100px; left:20%; animation: blobDrift 14s ease-in-out infinite alternate; }
+    .blob-bg .b4 { width:380px; height:380px; background:var(--mint);     bottom:20%; right:5%; animation: blobDrift 18s ease-in-out infinite alternate-reverse; }
+    .blob-bg .b5 { width:300px; height:300px; background:var(--sky);      top:50%; left:40%; animation: blobDrift 22s ease-in-out infinite alternate; }
+    @keyframes blobDrift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(50px,35px) scale(1.12); }
+    }
+
+    /* ===== FLOATING PETALS ===== */
+    .petals-container { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+    .petal {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50% 0 50% 0;
+      opacity: 0;
+      animation: petalFall linear infinite;
+    }
+    @keyframes petalFall {
+      0%   { opacity: 0; transform: translateY(-10px) rotate(0deg); }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { opacity: 0; transform: translateY(105vh) rotate(540deg) translateX(60px); }
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255, 248, 248, 0.88);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(249, 168, 201, 0.3);
+      padding: 0 2.5rem;
+      height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 20px rgba(232,105,154,0.08);
+      transition: var(--transition);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--rose-dark);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-logo .logo-dot { 
+      width: 8px; height: 8px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose-dark), var(--lavender-dark));
+      animation: logoPulse 2s ease-in-out infinite;
+    }
+    @keyframes logoPulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+    }
+    .nav-links { display: flex; gap: 0.4rem; align-items: center; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.45rem 1.1rem;
+      border-radius: 50px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .nav-links a:hover {
+      background: linear-gradient(135deg, var(--rose), var(--peach));
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+    .nav-links a.active {
+      background: linear-gradient(135deg, var(--rose), var(--peach));
+      color: var(--text);
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid var(--rose);
+      border-radius: 50px;
+      padding: 0.5rem 1.6rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--rose-dark);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2.2rem;
+      animation: fadeInDown 0.8s ease both;
+      box-shadow: 0 4px 20px rgba(232,105,154,0.15);
+    }
+    .hero-badge::before { content: '🌸'; font-size: 1.1rem; }
+    
+    /* Avatar with photo */
+    .hero-avatar-wrap {
+      position: relative;
+      width: 160px; height: 160px;
+      margin: 0 auto 2.2rem;
+      animation: fadeInDown 0.9s ease 0.1s both, floatAvatar 5s ease-in-out 1.5s infinite;
+    }
+    @keyframes floatAvatar {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .hero-avatar-img {
+      width: 160px; height: 160px;
+      border-radius: 40%;
+      object-fit: cover;
+      object-position: center top;
+      box-shadow: 0 0 0 6px rgba(249,168,201,0.4), 0 0 0 14px rgba(249,168,201,0.15), var(--shadow-lg);
+      display: block;
+    }
+    .hero-avatar-ring {
+      position: absolute; inset: -8px;
+      border-radius: 48%;
+      border: 2px dashed var(--rose);
+      animation: spinRing 12s linear infinite;
+      opacity: 0.6;
+    }
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .hero-avatar-badge {
+      position: absolute;
+      bottom: -6px; right: -10px;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--rose-dark));
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      letter-spacing: 0.05em;
+    }
+    
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6.5vw, 5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--rose-dark) 0%, var(--lavender-dark) 50%, var(--peach-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 0.7rem;
+      animation: fadeInUp 0.9s ease 0.2s both;
+    }
+    .hero-major {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      animation: fadeInUp 0.9s ease 0.3s both;
+    }
+    .hero-school {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      animation: fadeInUp 0.9s ease 0.35s both;
+    }
+    .hero-id {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.9s ease 0.4s both;
+      font-weight: 500;
+    }
+    .hero-school strong { color: var(--rose-dark); font-weight: 700; }
+    
+    /* POV quote */
+    .hero-pov {
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      animation: fadeInUp 0.9s ease 0.45s both;
+    }
+    .hero-pov blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 1.2rem 2rem;
+      background: rgba(255,255,255,0.7);
+      border-left: 4px solid var(--rose-dark);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .hero-pov blockquote::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--rose);
+      position: absolute;
+      top: -1rem; left: 0.5rem;
+      font-style: normal;
+      line-height: 1;
+    }
+    
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.7rem;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+      animation: fadeInUp 0.9s ease 0.5s both;
+    }
+    .hero-tag {
+      padding: 0.45rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1.5px solid;
+      background: var(--white);
+      transition: var(--transition);
+      cursor: default;
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .hero-tag:hover { transform: translateY(-4px) scale(1.04); box-shadow: var(--shadow-md); }
+    .hero-tag.t-rose     { border-color: var(--rose-dark);     color: var(--rose-dark); }
+    .hero-tag.t-lavender { border-color: var(--lavender-dark); color: var(--lavender-dark); }
+    .hero-tag.t-peach    { border-color: var(--peach-dark);    color: var(--peach-dark); }
+    .hero-tag.t-mint     { border-color: var(--mint-dark);     color: var(--mint-dark); }
+    .hero-tag.t-sky      { border-color: var(--sky-dark);      color: var(--sky-dark); }
+    .hero-tag.t-butter   { border-color: var(--butter-dark);   color: #a08a00; }
+    
+    .scroll-hint {
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      animation: fadeInUp 1s ease 0.8s both;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+    }
+    .scroll-hint .arrow {
+      width: 34px; height: 34px;
+      border: 2px solid var(--rose-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: bounceArrow 2s ease-in-out infinite;
+      color: var(--rose-dark);
+      font-size: 1rem;
+    }
+    @keyframes bounceArrow {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(8px); }
+    }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 6rem 2rem; max-width: 1120px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose-dark);
+      margin-bottom: 0.8rem;
+      padding: 0.35rem 1rem;
+      background: rgba(249,168,201,0.15);
+      border-radius: 50px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+      color: var(--text);
+      line-height: 1.25;
+    }
+    .section-title em { color: var(--rose-dark); font-style: italic; }
+    .section-desc {
+      margin-top: 1.2rem;
+      color: var(--text-light);
+      font-size: 1.05rem;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.85;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .about-left { display: flex; flex-direction: column; gap: 2rem; }
+    
+    /* Self photo card */
+    .about-photo-card {
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255,255,255,0.9);
+      transition: var(--transition);
+    }
+    .about-photo-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .about-photo-card:hover .about-photo-wrap img { transform: scale(1.02); }
+    .about-photo-caption {
+      padding: 1rem 1.4rem 1.2rem;
+      background: linear-gradient(135deg, rgba(249,168,201,0.15), rgba(216,200,240,0.15));
+    }
+    .about-photo-caption h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+    .about-photo-caption p { font-size: 0.85rem; color: var(--text-light); }
+    
+    /* ULIS school photo */
+    .school-photo-card {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .school-photo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .school-photo-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .school-photo-card:hover img { transform: scale(1.02); }
+    .school-photo-label {
+      padding: 0.7rem 1rem;
+      background: linear-gradient(135deg, rgba(184,228,249,0.3), rgba(184,240,216,0.3));
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .about-card {
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(255,255,255,0.9);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(to bottom, var(--rose-dark), var(--lavender-dark));
+    }
+    .about-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95); }
+    .about-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .about-card p, .about-card li {
+      color: var(--text-light);
+      font-size: 0.97rem;
+      line-height: 1.85;
+    }
+    .about-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .about-card li { display: flex; gap: 0.5rem; }
+    .about-card li::before { content: '🌸'; color: var(--rose-dark); font-size: 0.9rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* Info grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .info-chip {
+      background: rgba(255,255,255,0.8);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.1rem;
+      border: 1px solid rgba(249,168,201,0.3);
+      transition: var(--transition);
+    }
+    .info-chip:hover { border-color: var(--rose); background: white; transform: translateY(-2px); }
+    .info-chip .chip-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .info-chip .chip-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ===== WEEKS ===== */
+    .weeks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.2rem;
+    }
+    .week-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.6);
+      transition: var(--transition);
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .week-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: var(--shadow-lg);
+    }
+    .week-header {
+      padding: 1.8rem 1.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--week-bg1), var(--week-bg2));
+      display: flex; align-items: center; gap: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .week-header::before {
+      content: '';
+      position: absolute;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      top: -80px; right: -60px;
+    }
+    .week-header::after {
+      content: '';
+      position: absolute;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      bottom: -40px; left: -20px;
+    }
+    .week-number-badge {
+      background: rgba(255,255,255,0.92);
+      border-radius: 18px;
+      width: 62px; height: 62px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      z-index: 1;
+    }
+    .week-number-badge .wn-label { font-size: 0.62rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .week-number-badge .wn-num   { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 700; color: var(--text); line-height: 1; }
+    .week-header-text { flex: 1; min-width: 0; z-index: 1; }
+    .week-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+    .week-subtitle { font-size: 0.83rem; color: #5a4060; font-weight: 500; }
+    .week-body { padding: 1.7rem; flex: 1; }
+    .week-desc {
+      font-size: 0.93rem;
+      color: var(--text-light);
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .week-tasks { list-style: none; margin-bottom: 1.4rem; }
+    .week-tasks li {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      padding: 0.5rem 0;
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      border-bottom: 1px dashed rgba(232,105,154,0.2);
+    }
+    .week-tasks li:last-child { border-bottom: none; }
+    .week-tasks li .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--week-accent);
+      margin-top: 5px; flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(var(--week-accent-rgb), 0.15);
+    }
+    .week-footer { padding: 0 1.7rem 1.7rem; }
+    .action-buttons { display: flex; gap: 0.8rem; width: 100%; }
+    
+    .view-btn {
+      flex: 1;
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--week-accent);
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid var(--week-accent);
+      border-radius: 50px;
+      padding: 0.65rem 0;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      text-align: center;
+    }
+    .view-btn:hover {
+      background: var(--week-accent);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+    .download-btn {
+      flex: 1;
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--week-accent);
+      border: 1.5px solid var(--week-accent);
+      border-radius: 50px;
+      padding: 0.65rem 0;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+      text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+    .download-btn:hover {
+      filter: brightness(1.07);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    /* ===== PHOTO GALLERY (freestyle images) ===== */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      aspect-ratio: 4/3;
+    }
+    .gallery-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow-md); }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(58,40,69,0.65) 0%, transparent 55%);
+      opacity: 0;
+      transition: var(--transition);
+      display: flex; align-items: flex-end;
+      padding: 1rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-label {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(30, 10, 40, 0.82);
+      backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: var(--transition);
+      padding: 2rem;
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--radius);
+      width: 100%; max-width: 820px;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(40px) scale(0.97);
+      transition: var(--transition);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+    }
+    .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: rgba(249,168,201,0.15);
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text);
+      transition: var(--transition);
+    }
+    .modal-close:hover { background: var(--rose); color: white; transform: rotate(90deg); }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--text); margin-bottom: 1.5rem; }
+    .modal-body { color: var(--text-light); line-height: 1.85; font-size: 1.02rem; }
+    .modal-body h4 { color: var(--text); margin: 1.5rem 0 0.6rem; font-size: 1.1rem; font-weight: 700; }
+    .modal-body ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    .modal-body li { margin-bottom: 0.4rem; }
+    .modal-body p { margin-bottom: 1rem; }
+
+    /* ===== SUMMARY ===== */
+    .summary-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .summary-card {
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(255,255,255,0.9);
+      transition: var(--transition);
+    }
+    .summary-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .summary-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .summary-card p, .summary-card li {
+      font-size: 0.97rem;
+      color: var(--text-light);
+      line-height: 1.85;
+    }
+    .summary-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .summary-card li { display: flex; gap: 0.5rem; }
+    .summary-card li::before { content: '💡'; flex-shrink: 0; }
+
+    /* Korean farewell quote */
+    .farewell-block {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, rgba(216,200,240,0.4), rgba(249,168,201,0.3), rgba(255,240,179,0.3));
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.8);
+      position: relative;
+      overflow: hidden;
+    }
+    .farewell-block::before {
+      content: '✿';
+      position: absolute; top: -10px; left: 20px;
+      font-size: 5rem;
+      opacity: 0.08;
+    }
+    .farewell-block::after {
+      content: '✿';
+      position: absolute; bottom: -15px; right: 20px;
+      font-size: 5rem;
+      opacity: 0.08;
+    }
+    .farewell-korean {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--lavender-dark);
+      margin-bottom: 0.8rem;
+      line-height: 1.5;
+    }
+    .farewell-summary {
+      font-size: 1rem;
+      color: var(--text-light);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(135deg, var(--rose) 0%, var(--lavender) 50%, var(--peach) 100%);
+      text-align: center;
+      padding: 4rem 2rem;
+      margin-top: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-sunset {
+      position: absolute; inset: 0;
+      overflow: hidden;
+    }
+    .footer-sunset img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.18;
+    }
+    footer > * { position: relative; z-index: 1; }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    footer p {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.9;
+    }
+    .footer-divider {
+      width: 50px; height: 3px;
+      background: rgba(58,40,69,0.3);
+      border-radius: 2px;
+      margin: 1rem auto;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInDown { from { opacity:0; transform: translateY(-25px); } to { opacity:1; transform: translateY(0); } }
+    @keyframes fadeInUp   { from { opacity:0; transform: translateY(25px);  } to { opacity:1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-color); }
+    ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--rose-dark); }
+
+    /* Progress bar */
+    .reading-progress {
+      position: fixed;
+      top: 70px; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose-dark), var(--lavender-dark), var(--peach-dark));
+      z-index: 999;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-layout, .summary-wrapper { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr 1fr; }
+      .hero-name { font-size: 2.6rem; }
+      section { padding: 4rem 1.5rem; }
+      .action-buttons { flex-direction: column; }
+      .gallery-strip { grid-template-columns: 1fr; }
+      .weeks-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- DECORATIVE BLOBS -->
+<div class="blob-bg">
+  <span class="b1"></span>
+  <span class="b2"></span>
+  <span class="b3"></span>
+  <span class="b4"></span>
+  <span class="b5"></span>
+</div>
+
+<!-- FLOATING PETALS -->
+<div class="petals-container" id="petalsContainer"></div>
+
+<!-- READING PROGRESS -->
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-dot"></div>
+    Portfolio · Phương Thảo
+  </a>
+  <div class="nav-links">
+    <a href="#about"   id="nav-about">Giới thiệu</a>
+    <a href="#weeks"   id="nav-weeks">6 Tuần học</a>
+    <a href="#summary" id="nav-summary">Tổng kết</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+  <div class="hero-badge">Portfolio Kỹ Thuật Số</div>
+  
+  <div class="hero-avatar-wrap">
+    <div class="hero-avatar-ring"></div>
+    <img class="hero-avatar-img" src="SelfIntroducing.jpg" alt="Nguyễn Phương Thảo" />
+    <div class="hero-avatar-badge">ULIS · K25</div>
+  </div>
+  
+  <h1 class="hero-name">Nguyễn Phương Thảo</h1>
+  <p class="hero-major">Ngôn ngữ Hàn &nbsp;·&nbsp; Khóa 2025</p>
+  <p class="hero-school"><strong>ULIS – VNU</strong> &nbsp;|&nbsp; Đại học Ngoại ngữ – ĐHQGHN</p>
+  <p class="hero-id">Mã sinh viên: 25042576</p>
+  
+  <div class="hero-pov">
+    <blockquote>
+      Mỗi câu lệnh là một bước tiến. Ứng dụng AI – nâng tầm học tập và sáng tạo.
+    </blockquote>
+  </div>
+  
+  <div class="hero-tags">
+    <span class="hero-tag t-rose">📁 Quản lý tệp tin</span>
+    <span class="hero-tag t-sky">🔍 Tìm kiếm học thuật</span>
+    <span class="hero-tag t-lavender">✍️ Prompt Engineering</span>
+    <span class="hero-tag t-peach">🤝 Hợp tác trực tuyến</span>
+    <span class="hero-tag t-mint">🎨 AI sáng tạo</span>
+    <span class="hero-tag t-butter">⚖️ AI có trách nhiệm</span>
+  </div>
+  
+  <div class="scroll-hint">
+    <span>Khám phá hành trình</span>
+    <div class="arrow">↓</div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-label">✦ Về bản thân &amp; Portfolio</span>
+    <h2 class="section-title">Xin chào, mình là <em>Phương Thảo</em></h2>
+    <p class="section-desc">
+      Đây là không gian lưu trữ hành trình 6 tuần học "Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo" – nơi ngôn ngữ gặp gỡ công nghệ.
+    </p>
+  </div>
+  
+  <div class="about-layout">
+    <!-- Left column: photos + info -->
+    <div class="about-left">
+      <!-- Self-introducing photo card -->
+      <div class="about-photo-card reveal-left">
+        <div class="about-photo-wrap">
+          <img src="SelfIntroducing.jpg" alt="Nguyễn Phương Thảo – Tự giới thiệu" />
+        </div>
+        <div class="about-photo-caption">
+          <h4>Nguyễn Phương Thảo</h4>
+          <p>Sinh viên Ngôn ngữ Hàn – ULIS, VNU</p>
+        </div>
+      </div>
+      
+      <!-- Academic info chips -->
+      <div class="about-card reveal-left" style="transition-delay:0.1s">
+        <h3>🎓 Thông tin học tập</h3>
+        <div class="info-grid" style="margin-top:0.5rem">
+          <div class="info-chip">
+            <div class="chip-label">Trường</div>
+            <div class="chip-value">ULIS – VNU</div>
+          </div>
+          <div class="info-chip">
+            <div class="chip-label">Chuyên ngành</div>
+            <div class="chip-value">Ngôn ngữ Hàn</div>
+          </div>
+          <div class="info-chip">
+            <div class="chip-label">Mã sinh viên</div>
+            <div class="chip-value">25042576</div>
+          </div>
+          <div class="info-chip">
+            <div class="chip-label">Năm học</div>
+            <div class="chip-value">2025 – 2026</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- School photo -->
+      <div class="school-photo-card reveal-left" style="transition-delay:0.2s">
+        <img src="freestyle.jpg" alt="Trường ULIS – Đại học Ngoại ngữ VNU" />
+        <div class="school-photo-label">🏫 Trường Đại học Ngoại ngữ – ĐHQGHN (ULIS)</div>
+      </div>
+    </div>
+    
+    <!-- Right column: text cards -->
+    <div style="display:flex;flex-direction:column;gap:2rem;">
+      <div class="about-card reveal-right">
+        <h3>👋 Giới thiệu bản thân</h3>
+        <p>Mình là Phương Thảo – sinh viên năm nhất chuyên ngành Ngôn ngữ Hàn tại ULIS, VNU. Mình yêu thích ngôn ngữ, văn hóa Hàn Quốc và tin rằng việc kết hợp ngôn ngữ với công nghệ sẽ mở ra vô vàn cơ hội mới trong tương lai.</p>
+        <br>
+        <p>Môn học "Nhập môn Công nghệ số và Ứng dụng AI" đã cho mình cái nhìn hoàn toàn mới về cách học tập và sáng tạo trong thế giới số hóa ngày nay.</p>
+      </div>
+      
+      <div class="about-card reveal-right" style="transition-delay:0.1s">
+        <h3>🎯 Mục tiêu của Portfolio</h3>
+        <ul>
+          <li>Hệ thống hóa toàn bộ kiến thức và kỹ năng số học được trong 6 tuần.</li>
+          <li>Thể hiện khả năng ứng dụng thực tiễn qua từng bài tập cụ thể.</li>
+          <li>Lưu trữ sản phẩm cá nhân để truy cập và chia sẻ trong tương lai.</li>
+          <li>Phản tư về sự trưởng thành trong tư duy và năng lực số của bản thân.</li>
+        </ul>
+      </div>
+      
+      <div class="about-card reveal-right" style="transition-delay:0.2s">
+        <h3>💜 Kỷ niệm tại ULIS</h3>
+        <!-- Freestyle 2: flower photo -->
+        <img src="freestyle2.jpg" alt="Hoa ban tím tại ULIS" style="width:100%;border-radius:12px;margin-top:0.6rem;display:block;transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+        <p style="margin-top:0.8rem;font-size:0.88rem;color:var(--text-muted);text-align:center;font-style:italic;">✿ Ban tím rơi – kỷ niệm đầu năm học tại ULIS ✿</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WEEKS ========== -->
+<section id="weeks">
+  <div class="section-header reveal">
+    <span class="section-label">✦ Sản phẩm thực hành</span>
+    <h2 class="section-title">Hành trình <em>6 tuần</em> học tập</h2>
+    <p class="section-desc">
+      Mỗi tuần là một kỹ năng số mới – từ quản lý tệp tin đến sử dụng AI có trách nhiệm, mình đã từng bước trưởng thành trong thế giới công nghệ.
+    </p>
+  </div>
+  
+  <div class="weeks-grid">
+    <!-- WEEK 1 -->
+    <div class="week-card reveal" style="--week-bg1: var(--rose); --week-bg2: var(--peach); --week-accent: var(--rose-dark); transition-delay:0s">
+      <div class="week-header">
+        <div class="week-number-badge">
+          <span class="wn-label">Tuần</span>
+          <span class="wn-num">1</span>
+        </div>
+        <div class="week-header-text">
+          <h3 class="week-title">Quản lý tệp &amp; thư mục</h3>
+          <p class="week-subtitle">Máy tính &amp; Thiết bị ngoại vi</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Thực hành các thao tác cơ bản với hệ thống tệp tin trên Windows: tạo, đổi tên, sao chép, di chuyển và xóa thư mục/tệp tin một cách khoa học và logic.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>Tạo cây thư mục với quy tắc đặt tên nhất quán</li>
+          <li><div class="dot"></div>Sử dụng phím tắt tối ưu thời gian (Ctrl+C/V/X)</li>
+          <li><div class="dot"></div>Hiểu cơ chế Recycle Bin và xóa vĩnh viễn</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w1" onclick="openModal('m1')">Xem chi tiết</button>
+          <a href="b1.docx" download class="download-btn" id="dl-w1">Tải Bài 1 ⬇</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-card reveal" style="--week-bg1: var(--sky); --week-bg2: var(--lavender); --week-accent: var(--sky-dark); transition-delay:0.1s">
+      <div class="week-header">
+        <div class="week-number-badge">
+          <span class="wn-label">Tuần</span>
+          <span class="wn-num">2</span>
+        </div>
+        <div class="week-header-text">
+          <h3 class="week-title">Tìm kiếm &amp; Đánh giá</h3>
+          <p class="week-subtitle">Khai thác dữ liệu học thuật</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Thực hiện tìm kiếm thông tin nâng cao và đánh giá độ tin cậy của nguồn tài liệu học thuật. Áp dụng các toán tử tìm kiếm chuyên biệt trên Google và các CSDL học thuật.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>Sử dụng toán tử site:, filetype:, intitle:</li>
+          <li><div class="dot"></div>Đánh giá độ tin cậy nguồn thông tin học thuật</li>
+          <li><div class="dot"></div>Tra cứu tài liệu từ Springer, ScienceDirect</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w2" onclick="openModal('m2')">Xem chi tiết</button>
+          <a href="b2.docx" download class="download-btn" id="dl-w2">Tải Bài 2 ⬇</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week-card reveal" style="--week-bg1: var(--lavender); --week-bg2: var(--mint); --week-accent: var(--lavender-dark); transition-delay:0.2s">
+      <div class="week-header">
+        <div class="week-number-badge">
+          <span class="wn-label">Tuần</span>
+          <span class="wn-num">3</span>
+        </div>
+        <div class="week-header-text">
+          <h3 class="week-title">Viết Prompt hiệu quả</h3>
+          <p class="week-subtitle">Tổng quan về AI &amp; Prompt Engineering</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Phân tích tác vụ học tập và thực hành kỹ năng viết câu lệnh (Prompt Engineering). So sánh sự khác biệt giữa các cấp độ prompt từ cơ bản đến nâng cao.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>Kỹ thuật Role-prompting và Chain-of-Thought</li>
+          <li><div class="dot"></div>Quy tắc "Cấp quyền – Bối cảnh – Ràng buộc"</li>
+          <li><div class="dot"></div>So sánh 3 cấp độ prompt, đánh giá kết quả</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w3" onclick="openModal('m3')">Xem chi tiết</button>
+          <a href="b3.docx" download class="download-btn" id="dl-w3">Tải Bài 3 ⬇</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week-card reveal" style="--week-bg1: var(--mint); --week-bg2: var(--butter); --week-accent: var(--mint-dark); transition-delay:0s">
+      <div class="week-header">
+        <div class="week-number-badge">
+          <span class="wn-label">Tuần</span>
+          <span class="wn-num">4</span>
+        </div>
+        <div class="week-header-text">
+          <h3 class="week-title">Hợp tác trực tuyến</h3>
+          <p class="week-subtitle">Giao tiếp trong môi trường số</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Triển khai dự án nhóm với bộ ba công cụ cộng tác: Google Docs, Google Drive và Microsoft Teams. Học cách làm việc nhóm hiệu quả trong không gian số.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>Soạn thảo đồng thời trên Google Docs</li>
+          <li><div class="dot"></div>Quản lý tài nguyên nhóm trên Google Drive</li>
+          <li><div class="dot"></div>Giao tiếp và họp trực tuyến qua Teams</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w4" onclick="openModal('m4')">Xem chi tiết</button>
+          <a href="b4.docx" download class="download-btn" id="dl-w4">Tải Bài 4 ⬇</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 5 -->
+    <div class="week-card reveal" style="--week-bg1: var(--peach); --week-bg2: var(--butter); --week-accent: var(--peach-dark); transition-delay:0.1s">
+      <div class="week-header">
+        <div class="week-number-badge">
+          <span class="wn-label">Tuần</span>
+          <span class="wn-num">5</span>
+        </div>
+        <div class="week-header-text">
+          <h3 class="week-title">Sáng tạo với AI</h3>
+          <p class="week-subtitle">AI tạo sinh nội dung số</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Sử dụng các công cụ AI tạo sinh để sản xuất nội dung sáng tạo: kết hợp Gemini, DALL-E và Canva AI để tạo ra sản phẩm truyền thông chuyên nghiệp.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>Dùng Gemini lên kịch bản nội dung</li>
+          <li><div class="dot"></div>DALL-E tạo hình ảnh minh họa độc đáo</li>
+          <li><div class="dot"></div>Canva AI hoàn thiện bố cục sản phẩm</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w5" onclick="openModal('m5')">Xem chi tiết</button>
+          <a href="b5.docx" download class="download-btn" id="dl-w5">Tải Bài 5 ⬇</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 6 -->
+    <div class="week-card reveal" style="--week-bg1: var(--rose); --week-bg2: var(--lavender); --week-accent: var(--lavender-dark); transition-delay:0.2s">
+      <div class="week-header">
+        <div class="week-number-badge">
+          <span class="wn-label">Tuần</span>
+          <span class="wn-num">6</span>
+        </div>
+        <div class="week-header-text">
+          <h3 class="week-title">AI có trách nhiệm</h3>
+          <p class="week-subtitle">An toàn &amp; Liêm chính học thuật</p>
+        </div>
+      </div>
+      <div class="week-body">
+        <p class="week-desc">Phân tích chính sách AI của VNU và xây dựng bộ nguyên tắc sử dụng AI cá nhân. Thực hành minh bạch, tư duy phản biện và bảo vệ liêm chính học thuật.</p>
+        <ul class="week-tasks">
+          <li><div class="dot"></div>Bộ nguyên tắc "5 KHÔNG – 1 CÓ"</li>
+          <li><div class="dot"></div>Tránh đạo văn công nghệ, khai báo AI</li>
+          <li><div class="dot"></div>Tư duy phản biện, làm chủ sản phẩm</li>
+        </ul>
+      </div>
+      <div class="week-footer">
+        <div class="action-buttons">
+          <button class="view-btn" id="btn-w6" onclick="openModal('m6')">Xem chi tiết</button>
+          <a href="b6.docx" download class="download-btn" id="dl-w6">Tải Bài 6 ⬇</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SUMMARY ========== -->
+<section id="summary">
+  <div class="section-header reveal">
+    <span class="section-label">✦ Tổng kết hành trình</span>
+    <h2 class="section-title">Nhìn lại <em>6 tuần</em> trưởng thành</h2>
+    <p class="section-desc">
+      Học phần "Nhập môn Công nghệ số và Ứng dụng AI" đã thay đổi tư duy và cách tiếp cận, sử dụng ngôn ngữ của mình.
+    </p>
+  </div>
+  
+  <div class="summary-wrapper">
+    <div class="summary-card reveal-left">
+      <h3>✨ Cảm nhận cá nhân</h3>
+      <p>Học phần Nhập môn Công nghệ số và ứng dụng trí tuệ nhân tạo đã thay đổi tư duy và cách tôi tiếp cận, sử dụng với "ngôn ngữ". Từ một người học ngôn ngữ Hàn, mình nhận ra rằng ngôn ngữ lập trình AI (prompt) cũng là một dạng ngôn ngữ – cần học, cần luyện tập và cần sự sáng tạo.</p>
+      <br>
+      <p>Điều mình tâm đắc nhất là ranh giới giữa "sử dụng AI" và "bị AI thao túng" – và rằng chỉ khi ta giữ được tư duy độc lập, AI mới thực sự phát huy tác dụng.</p>
+    </div>
+    
+    <div class="summary-card reveal-right">
+      <h3>🌱 Kỹ năng đã học được</h3>
+      <ul>
+        <li>Tổ chức và quản lý dữ liệu số hiệu quả trên máy tính.</li>
+        <li>Tìm kiếm, đánh giá thông tin và liêm chính học thuật.</li>
+        <li>Tư duy thuật toán qua Prompt Engineering với AI.</li>
+        <li>Làm việc nhóm xuyên biên giới bằng công cụ Cloud.</li>
+        <li>Sáng tạo nội dung số với sự hỗ trợ của AI tạo sinh.</li>
+        <li>Nhận thức về đạo đức, trách nhiệm khi dùng AI.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Farewell block with Korean quote -->
+  <div class="farewell-block reveal" style="margin-top:2.5rem">
+    <!-- Freestyle 3: sunset city photo -->
+    <div style="border-radius:16px;overflow:hidden;margin-bottom:1.5rem;box-shadow:0 6px 24px rgba(58,40,69,0.12);">
+      <img src="freestyle3.jpg" alt="Responsibility – Opportunity – Community" style="width:100%;height:auto;display:block;" />
+    </div>
+    <p style="text-align:center;font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:600;letter-spacing:0.05em;">🌆 Responsibility · Opportunity · Community</p>
+    <p class="farewell-korean">지금까지의 여정에 감사합니다. 절대 잊지 않겠습니다.</p>
+    <div class="footer-divider"></div>
+    <p class="farewell-summary">
+      Cảm ơn vì hành trình đến tận đây. Tôi sẽ không bao giờ quên.<br>
+      <span style="font-style:italic;color:var(--text-muted)">– Nguyễn Phương Thảo, ULIS VNU 2026 –</span>
+    </p>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-sunset">
+    <img src="freestyle3.jpg" alt="background" />
+  </div>
+  <h2 class="footer-name">Nguyễn Phương Thảo</h2>
+  <p>Ngôn ngữ Hàn &nbsp;·&nbsp; ULIS – VNU &nbsp;·&nbsp; 25042576</p>
+  <div class="footer-divider"></div>
+  <p>Portfolio Học tập – Nhập môn Công nghệ số &amp; Ứng dụng AI</p>
+  <p style="margin-top:0.5rem;font-size:0.85rem;opacity:0.7;">© 2026 · Được thiết kế với 💜 và sự tỉ mỉ</p>
+</footer>
+
+<!-- ========== MODALS ========== -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()" id="modal-close-btn">×</button>
+    <div id="modal-dynamic-content"></div>
+  </div>
+</div>
+
+<!-- Modal Data -->
+<template id="data-m1">
+  <h2 class="modal-title">🗂️ Tuần 1: Quản lý tệp &amp; thư mục</h2>
+  <div class="modal-body">
+    <h4>Mục tiêu bài học:</h4>
+    <p>Nắm vững quy tắc tổ chức dữ liệu số trên máy tính, giúp tìm kiếm và quản lý tài liệu học tập một cách tối ưu, chuẩn bị nền tảng cho các kỹ năng số cao hơn.</p>
+    <h4>Các kỹ năng đã thực hành:</h4>
+    <ul>
+      <li>Mở File Explorer nhanh bằng phím tắt <strong>Windows + E</strong>.</li>
+      <li>Tạo cấu trúc thư mục với quy tắc đặt tên rõ ràng, nhất quán.</li>
+      <li>Tạo, đổi tên và sắp xếp các tệp văn bản (.txt, .docx).</li>
+      <li>Sử dụng thành thạo <strong>Ctrl+C, Ctrl+V, Ctrl+X</strong> để di chuyển dữ liệu.</li>
+      <li>Hiểu cơ chế xóa tạm thời (Recycle Bin) và xóa vĩnh viễn (Shift+Delete).</li>
+      <li>Áp dụng tư duy phân loại tệp theo chủ đề, thời gian, mức độ ưu tiên.</li>
+    </ul>
+    <h4>Kết quả &amp; Bài học:</h4>
+    <p><strong>Kết quả:</strong> Hình thành thói quen làm việc ngăn nắp trên không gian số, tiết kiệm thời gian đáng kể khi tìm kiếm tài liệu học tập sau này.</p>
+    <p><strong>Bài học:</strong> Một hệ thống tệp tin gọn gàng giống như một từ vựng được sắp xếp đúng – giúp ta tra cứu nhanh và hiệu quả hơn rất nhiều.</p>
+  </div>
+</template>
+
+<template id="data-m2">
+  <h2 class="modal-title">🔍 Tuần 2: Tìm kiếm &amp; Đánh giá thông tin</h2>
+  <div class="modal-body">
+    <h4>Kỹ năng tìm kiếm nâng cao:</h4>
+    <p>Áp dụng các toán tử tìm kiếm chuyên biệt trên Google và các cơ sở dữ liệu học thuật để tìm tài liệu chất lượng cao cho việc học ngôn ngữ và nghiên cứu.</p>
+    <h4>Các toán tử đã sử dụng:</h4>
+    <ul>
+      <li><strong>site:</strong> – Tìm kiếm trong phạm vi trang web cụ thể</li>
+      <li><strong>filetype:</strong> – Lọc theo định dạng file (PDF, DOC...)</li>
+      <li><strong>intitle:</strong> – Tìm theo tiêu đề trang</li>
+      <li><strong>"cụm từ chính xác"</strong> – Tìm cụm từ nguyên vẹn</li>
+      <li><strong>-từ_loại_trừ</strong> – Lọc bỏ từ không liên quan</li>
+    </ul>
+    <h4>Tiêu chí đánh giá nguồn thông tin:</h4>
+    <ul>
+      <li><strong>Tác giả:</strong> Chuyên môn, tổ chức uy tín, có thể xác minh.</li>
+      <li><strong>Cơ quan xuất bản:</strong> Tạp chí khoa học có peer-review.</li>
+      <li><strong>Phương pháp nghiên cứu:</strong> Rõ ràng, có dẫn chứng cụ thể.</li>
+      <li><strong>Tính cập nhật:</strong> Thông tin mới nhất, phù hợp thời điểm.</li>
+    </ul>
+    <h4>Kết quả:</h4>
+    <p>Xây dựng bảng tổng hợp đánh giá độ tin cậy của tài liệu. Nhận ra rằng kỹ năng đánh giá thông tin cũng quan trọng không kém kỹ năng tìm kiếm – đặc biệt trong thời đại AI tạo ra nội dung tràn lan.</p>
+  </div>
+</template>
+
+<template id="data-m3">
+  <h2 class="modal-title">✍️ Tuần 3: Viết Prompt hiệu quả</h2>
+  <div class="modal-body">
+    <h4>Tổng quan về AI &amp; Prompt Engineering:</h4>
+    <p>Học cách "nói chuyện" với AI một cách hiệu quả – giống như học ngữ pháp để giao tiếp trôi chảy bằng ngoại ngữ. Prompt là ngôn ngữ giao tiếp với AI.</p>
+    <h4>3 cấp độ Prompt đã thực nghiệm:</h4>
+    <ul>
+      <li><strong>Cơ bản:</strong> Câu hỏi đơn giản → Kết quả chung chung, thiếu chiều sâu.</li>
+      <li><strong>Cải tiến:</strong> Thêm đối tượng mục tiêu + định dạng yêu cầu → Kết quả cụ thể hơn.</li>
+      <li><strong>Nâng cao:</strong> Role-prompting + Chain-of-Thought + ràng buộc → Kết quả xuất sắc, có tính sư phạm cao.</li>
+    </ul>
+    <h4>Công thức vàng 4C:</h4>
+    <ul>
+      <li><strong>Character (Cấp quyền):</strong> Giao vai trò cụ thể cho AI</li>
+      <li><strong>Context (Bối cảnh):</strong> Cung cấp đầy đủ thông tin nền</li>
+      <li><strong>Constraints (Ràng buộc):</strong> Đặt giới hạn rõ ràng</li>
+      <li><strong>Conversation (Phản hồi):</strong> Tạo vòng lặp hỏi-đáp hai chiều</li>
+    </ul>
+    <h4>Ứng dụng cho sinh viên ngôn ngữ:</h4>
+    <p>Dùng AI để luyện tiếng Hàn: đóng vai giáo viên bản địa, tạo bài tập ngữ pháp, dịch thuật có giải thích sắc thái văn hóa. Prompt tốt cho kết quả vượt trội!</p>
+  </div>
+</template>
+
+<template id="data-m4">
+  <h2 class="modal-title">🤝 Tuần 4: Hợp tác trực tuyến</h2>
+  <div class="modal-body">
+    <h4>Bối cảnh dự án nhóm:</h4>
+    <p>Làm việc nhóm để lập kế hoạch và triển khai một dự án học tập chung trong môi trường số, sử dụng bộ ba công cụ cộng tác hiện đại.</p>
+    <h4>Bộ 3 công cụ được áp dụng:</h4>
+    <ul>
+      <li><strong>Google Docs:</strong> Soạn thảo nội dung đồng thời, theo dõi lịch sử chỉnh sửa minh bạch, comment và gợi ý thay đổi.</li>
+      <li><strong>Google Drive:</strong> Lưu trữ tài nguyên tập trung, phân cấp thư mục theo chủ đề, chia sẻ quyền truy cập linh hoạt.</li>
+      <li><strong>Microsoft Teams:</strong> Giao tiếp tức thời qua Channels, tổ chức họp video, chia sẻ file và giao nhiệm vụ (@mention).</li>
+    </ul>
+    <h4>Thách thức đã vượt qua:</h4>
+    <ul>
+      <li>Xung đột định dạng văn bản → Dùng Heading Styles chuẩn trên Docs.</li>
+      <li>Thông tin quan trọng bị trôi → Dùng ghim tin nhắn và tag @Important trên Teams.</li>
+      <li>Phân công chưa rõ ràng → Tạo bảng phân công trong Google Sheets.</li>
+    </ul>
+    <h4>Bài học cốt lõi:</h4>
+    <p>Công cụ tốt chỉ là điều kiện cần – điều kiện đủ là kỹ năng giao tiếp rõ ràng và tinh thần trách nhiệm trong nhóm. Đây là kỹ năng sẽ dùng suốt cuộc đời.</p>
+  </div>
+</template>
+
+<template id="data-m5">
+  <h2 class="modal-title">🎨 Tuần 5: Sáng tạo nội dung với AI</h2>
+  <div class="modal-body">
+    <h4>Sản phẩm sáng tạo:</h4>
+    <p>Tạo ra nội dung số chất lượng cao bằng cách kết hợp nhiều công cụ AI tạo sinh, thể hiện khả năng điều phối và tối ưu hóa quy trình sản xuất nội dung.</p>
+    <h4>Quy trình phối hợp đa công cụ:</h4>
+    <ul>
+      <li><strong>Google Gemini:</strong> Lên kịch bản nội dung, tạo bản thảo văn bản phù hợp đối tượng mục tiêu.</li>
+      <li><strong>DALL-E / AI Image:</strong> Tạo hình ảnh minh họa độc đáo, phù hợp với phong cách thiết kế.</li>
+      <li><strong>Canva AI:</strong> Tách nền, phối màu tự động, dàn trang bố cục chuyên nghiệp và hiện đại.</li>
+    </ul>
+    <h4>Phân tích tỷ lệ đóng góp:</h4>
+    <p>AI hỗ trợ tạo ra ~40% nội dung thô ban đầu. Cá nhân đóng góp 60% vào việc: tinh chỉnh từ ngữ cho phù hợp văn hóa, thêm ý tưởng sáng tạo riêng, kiểm duyệt nội dung và hoàn thiện sản phẩm cuối.</p>
+    <h4>Bài học quan trọng:</h4>
+    <p>AI là công cụ tăng tốc tuyệt vời, nhưng con người phải là người duyệt và quyết định cuối cùng. Tránh rập khuôn, thiếu cá tính – đó là bẫy lớn nhất khi dùng AI sáng tạo.</p>
+  </div>
+</template>
+
+<template id="data-m6">
+  <h2 class="modal-title">⚖️ Tuần 6: Sử dụng AI có trách nhiệm</h2>
+  <div class="modal-body">
+    <h4>Phân tích chính sách AI của VNU:</h4>
+    <p>ĐHQGHN áp dụng chính sách "Tích hợp có kiểm soát": Cho phép dùng AI để gợi ý, sửa lỗi, tra cứu thông tin – nhưng nghiêm cấm "Đạo văn AI" (copy-paste nguyên văn). Sinh viên chịu 100% trách nhiệm về nội dung nộp.</p>
+    <h4>Bộ nguyên tắc cá nhân "5 KHÔNG – 1 CÓ":</h4>
+    <ul>
+      <li><strong>KHÔNG</strong> copy-paste nguyên văn kết quả AI vào bài nộp.</li>
+      <li><strong>KHÔNG</strong> tin tưởng hoàn toàn, không fact-check thông tin AI cung cấp.</li>
+      <li><strong>KHÔNG</strong> cung cấp thông tin cá nhân/bảo mật cho AI.</li>
+      <li><strong>KHÔNG</strong> bỏ qua tài liệu gốc, chỉ dùng tóm tắt của AI.</li>
+      <li><strong>KHÔNG</strong> che giấu việc có dùng AI trong bài làm.</li>
+      <li><strong>CÓ</strong> tư duy phản biện, làm chủ hoàn toàn sản phẩm của mình.</li>
+    </ul>
+    <h4>Thực hành minh bạch:</h4>
+    <p>Luôn kèm theo "AI Disclosure" (khai báo sử dụng AI) cuối mỗi sản phẩm có dùng AI. Đây không phải là quy định bắt buộc mà là đạo đức học thuật mà mình tự nguyện thực hiện.</p>
+    <h4>Kết luận:</h4>
+    <p>Làm chủ AI bắt đầu từ việc hiểu rõ: AI là gương phản chiếu tư duy của bạn – prompt tốt đến từ đầu óc tốt, không phải ngược lại.</p>
+  </div>
+</template>
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+  // === PETALS ===
+  const petalColors = ['#f9a8c9','#d8c8f0','#ffd6b3','#b8f0d8','#b8e4f9','#fff0b3'];
+  const petalsContainer = document.getElementById('petalsContainer');
+  for(let i = 0; i < 18; i++) {
+    const el = document.createElement('div');
+    el.className = 'petal';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.width = (Math.random() * 10 + 7) + 'px';
+    el.style.height = (Math.random() * 10 + 7) + 'px';
+    el.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
+    el.style.animationDuration = (Math.random() * 14 + 8) + 's';
+    el.style.animationDelay = (Math.random() * 8) + 's';
+    petalsContainer.appendChild(el);
+  }
+
+  // === READING PROGRESS ===
+  const progressBar = document.getElementById('readingProgress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  });
+
+  // === SCROLL REVEAL ===
+  function reveal() {
+    const items = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    items.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 90) {
+        el.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', reveal);
+  window.addEventListener('load', reveal);
+  reveal();
+
+  // === ACTIVE NAV ===
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 160) cur = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+    });
+  });
+
+  // === MODAL ===
+  const overlay = document.getElementById('modal-overlay');
+  const dynContent = document.getElementById('modal-dynamic-content');
+
+  function openModal(weekId) {
+    const tmpl = document.getElementById('data-' + weekId);
+    if (!tmpl) return;
+    dynContent.innerHTML = tmpl.innerHTML;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>

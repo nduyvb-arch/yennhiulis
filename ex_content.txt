@@ -1,0 +1,100 @@
+--- Page 1 ---
+14:01 5/6/26 Lớp học - chi tiết | Hệ thống đào tạo trực tuyến | Đại Học Quốc Gia Hà Nội
+ SOẠN GHI CHÚ
+https://lms.vnu.edu.vn/learn/lop-hoc/chi-tiet/8304b188-fde2-471f-9bdb-9c69ac148e94 3/6
+--- Page 2 ---
+14:01 5/6/26 Lớp học - chi tiết | Hệ thống đào tạo trực tuyến | Đại Học Quốc Gia Hà Nội
+ SOẠN GHI CHÚ
+https://lms.vnu.edu.vn/learn/lop-hoc/chi-tiet/8304b188-fde2-471f-9bdb-9c69ac148e94 4/6
+--- Page 3 ---
+14:01 5/6/26 Lớp học - chi tiết | Hệ thống đào tạo trực tuyến | Đại Học Quốc Gia Hà Nội
+*Rubric đánh giá
+Điểm tối
+STTTên tiêu chí(*) Mức 1 Mức 2 Mức 3 Mức 4
+đa(*)
+- Có ít hơn 2 trang; thiếu - Có đầy đủ trang giới thiệu - Thiết kế chuyên nghiệp, màu sắc
+- Thiết kế sáng tạo, độc đáo; tích
+trang giới thiệu hoặc tổng và tổng kết; nhất quán;
+Thiết kế & cấu trúc hợp yếu tố đa phương tiện;
+1 3 kết;
+Portfolio
+- Thiết kế đơn giản nhưng - Cấu trúc logic, liên kết chặt chẽ giữa
+- Tối ưu hóa trải nghiệm người dùng.
+- Cấu trúc khó điều hướng cấu trúc rõ ràng. các trang
+- Không có ảnh chụp minh - Cấu trúc khoa học;
+- Có ảnh chụp và mô tả ngắn;
+họa; - Cấu trúc thư mục logic;
+Nhiệm vụ 1: Quản lý - Quy tắc đặt tên sáng tạo;
+2 1 - Cấu trúc thư mục và quy tắc
+tệp và thư mục - Cấu trúc thư mục không - Quy tắc đặt tên nhất quán; có mô tả
+đặt tên đã được tạo nhưng
+logic hoặc thiếu quy tắc đặt giải thích lý do thiết kế. - Mô tả thể hiện sự hiểu sâu sắc về
+chưa tối ưu.
+tên. tổ chức dữ liệu.
+- Không áp dụng toán tử tìm - Sử dụng 2-3 toán tử nhưng
+- Sử dụng thành thạo 3-4 toán tử (site:, - Sử dụng linh hoạt trên 4 toán tử;
+Nhiệm vụ 2: Tìm kiếm nâng cao; chưa hiệu quả;
+filetype:...);
+3 kiếm & đánh giá 1
+- Phân tích rất sâu sắc về chiến lược
+thông tin - Thiếu ảnh chụp kết quả và - Ảnh chụp chưa rõ hoặc
+- Ảnh rõ ràng; phân tích sâu sắc. tìm kiếm và đánh giá.
+phân tích. phân tích còn hời hợt.
+- Áp dụng thành thạo kỹ thuật
+- Chỉ có 1 phiên bản prompt; - Có prompt ban đầu và cải - Áp dụng hiệu quả nguyên tắc viết
+Prompt Engineering;
+Nhiệm vụ 3: Viết tiến nhưng sự khác biệt nhỏ; prompt (vai trò, bối cảnh...);
+4 1
+Prompt hiệu quả - Prompt không liên quan
+- So sánh rất sâu sắc về cơ chế hoạt
+hoặc không có sự so sánh. - Giải thích còn đơn giản. - So sánh và giải thích logic.
+động của AI.
+- Không sử dụng công cụ
+- Có sử dụng công cụ nhưng
+quản lý dự án. - Sử dụng công cụ hiệu quả để lập kế - Tích hợp các tính năng nâng cao;
+chưa hiệu quả;
+Nhiệm vụ 4: Hợp tác hoạch và phân công;
+5 1
+trực tuyến - Thiếu ảnh chụp màn hình - Mô tả chi tiết cách tối ưu hóa quy
+- Thiếu chi tiết về phân công
+và mô tả về cách sử dụng - Ảnh chụp minh họa rõ các tính năng. trình làm việc nhóm.
+và theo dõi tiến độ.
+công cụ.
+- Có sản phẩm nhưng còn lỗi
+- Không có sản phẩm nội - Sản phẩm rất chuyên nghiệp và
+kỹ thuật hoặc nội dung chưa - Sản phẩm rõ ràng, hấp dẫn;
+dung số hoặc sản phẩm sáng tạo;
+Nhiệm vụ 5: Sáng hấp dẫn;
+6 1 thiếu chất lượng;
+tạo nội dung với AI - Mô tả chi tiết các bước sản xuất và
+- Thể hiện khả năng tận dụng tối đa
+- Mô tả được vài bước sản công cụ sử dụng.
+- Mô tả quy trình sơ sài. các công cụ AI.
+xuất.
+- Không có bộ nguyên tắc
+- Có bộ nguyên tắc (5-7 điều) - Bộ nguyên tắc cá nhân rõ ràng (5-7 - Bộ nguyên tắc chi tiết; tư duy phản
+hoặc nguyên tắc chung
+nhưng thiếu cụ thể; điều); biện cao;
+Nhiệm vụ 6: AI có chung;
+7 1
+trách nhiệm
+- Phân tích mối liên hệ còn - Phân tích sâu sắc các vấn đề đạo - Đề xuất giải pháp cho các thách
+- Không liên kết được với
+chưa rõ. đức AI. thức đạo đức.
+chính sách.
+Nội dung tổng kết hời hợt, Thể hiện rõ kiến thức/kỹ năng đã học; Phân tích sâu sắc sự trưởng thành
+Tổng kết và đánh
+8 1 Không có trang tổng kết. chưa thể hiện rõ những gì đã đánh giá được thách thức và bài học và cách áp dụng các kỹ năng trong
+giá bản thân
+học. kinh nghiệm. tương lai.
+Dưới đây là một số video từ youtube hướng dẫn tạo Website/Blog:
+- HƯỚNG DẪN SỬ DỤNG GOOGLE SITE:
+Tiếng Việt: https://youtu.be/Yn03t68kukg?si=owwEkmnZ70TUsie4
+Tiếng Anh: https://www.youtube.com/watch?v=fwd48XTbntU
+- HƯỚNG DẪN SỬ DỤNG NOTION:
+Tiếng Việt: https://www.youtube.com/watch?v=VAxBzTR2Hws
+Tiếng Anh: https://www.youtube.com/watch?v=-3QXs_g7R4A
+- HƯỚNG DẪN SỬ DỤNG WIX:
+Tiếng Anh: https://youtu.be/8k1418d3sAU?si=4zZx3Hqg9NC_6ur9
+ SOẠN GHI CHÚ
+https://lms.vnu.edu.vn/learn/lop-hoc/chi-tiet/8304b188-fde2-471f-9bdb-9c69ac148e94 5/6
